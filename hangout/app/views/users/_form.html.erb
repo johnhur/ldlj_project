@@ -1,4 +1,5 @@
 <%= form_for(@user) do |f| %>
+	<%= render partial: 'users/errors', locals:{instance:@user} %>
 	<div class="form-group">
 		<%= f.label :first_name %>
 		<%= f.text_field :first_name %>
@@ -22,6 +23,10 @@
 	<div class="form-group">
 		<%= f.label :password %>	
 		<%= f.text_field :password %>
+	</div>
+
+	<div>
+		<%= f.submit %>
 	</div>
 
 <% end %>	
