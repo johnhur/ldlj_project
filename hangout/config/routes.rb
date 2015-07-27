@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'sessions/signup'
-
-  get 'sessions/login'
-
-  get 'sessions/home'
-
+  roots 'sessions#login'
+  get '/login', to: "sessions#login", as: 'login'
+  post '/login', to: "sessions#attempt_login"
+  delete '/logout', to: "sessions#logout", as: "logout"
+  
   resources :users
   resources :places
 end
