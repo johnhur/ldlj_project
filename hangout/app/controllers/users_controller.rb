@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     @user.destroy
     session[:user_id] = nil
-    flash[:notice] = "User Deleted"
+    flash[:notice] = "#{@user.first_name} has been deleted!"
     redirect_to login_path
   end
 

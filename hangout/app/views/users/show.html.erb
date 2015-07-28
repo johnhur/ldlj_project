@@ -7,5 +7,6 @@
 <li><%= @user.email %></li>
 <li><%= @user.address%></li>
 <%= link_to "Edit #{@user.first_name}'s Info",edit_user_path(@user)%>
+<%= link_to "Delete #{@user.first_name}"'s account', user_path(@user), method: :delete %>
 </ul>
 
