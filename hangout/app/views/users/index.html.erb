@@ -1,6 +1,13 @@
+<%= link_to "Sign Out", logout_path, method: :delete %>
+<%= link_to "User Show Page", user_path(session[:user_id])%>
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
+
 
 <% @users.each do |user| %>
 	<%= user.first_name %>
 <% end %>
+
+<div><h1 id='map'>Here is our Map, made by appending Handlebars</h1></div>
+
+

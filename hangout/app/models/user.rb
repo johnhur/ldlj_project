@@ -12,5 +12,8 @@ class User < ActiveRecord::Base
 	has_many :favorites, dependent: :destroy
 	has_many :places, through: :favorites
 
+	has_many :comments, dependent: :destroy
+	has_many :places, through: :comments
+
 	has_secure_password
 end

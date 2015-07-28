@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   	if params[:email].present? && params[:password].present?
   	  found_user = User.where(email: params[:email]).first
   	  if found_user && found_user.authenticate(params[:password])
+        session[:user_id] = nil
   	    session[:user_id] = found_user.id
   	    redirect_to users_path
   	  else
