@@ -25,6 +25,10 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end	
 
+  def show
+    @user = User.find (params[:id])
+  end 
+
   def update
     @user = User.find params[:id]
     @user.update user_params
@@ -41,13 +45,16 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     flash[:notice] = "#{@user.first_name} has been deleted!"
     redirect_to login_path
+
   end
 
+# added avatar info into the def user_params
   private
 
   def user_params
   	params.require(:user).permit(
   		:first_name,
+      :avatar,
   		:email,
   		:img_url,
   		:address,
