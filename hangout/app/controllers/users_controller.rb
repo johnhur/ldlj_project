@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   		end	
   end		
 
-  def show
+  def show # view not finished
     @user = User.find params[:id]
   end
 
