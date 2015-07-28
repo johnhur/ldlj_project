@@ -106,7 +106,7 @@ $(function() {
 
   initialize();
   checkForLoc();
-
+  
   //display public transit network using the TransitLayer object
   function showTransit() {
     bikeLayer.setMap(null);

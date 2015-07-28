@@ -22,8 +22,13 @@ class ApplicationController < ActionController::Base
        return unless session[:user_id]
       # Defines @current_user if it is not already defined.
        @current_user ||= User.find_by_id(session[:user_id])
-     end
-     helper_method :current_user #make it available in views (it will be available in all controllers as well because they inherit from `ApplicationController`)
+   end
+     
+   def logged_in?
+   		session[:user_id] != nil
+   end
+
+   helper_method :current_user, :logged_in? #make it available in views (it will be available in all controllers as well because they inherit from `ApplicationController`)
   
 end
 

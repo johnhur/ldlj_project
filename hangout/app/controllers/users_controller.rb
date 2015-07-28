@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.create(user_params)
   		if @user.save
+        session[:user_id] = @user.id
   			redirect_to users_path, flash: {success: "#{@user.first_name} created"}
   		else 
   			render :new
@@ -54,7 +55,6 @@ class UsersController < ApplicationController
   		:password
   		)
   end	
-
   # We don't want other users to edit another user's info or favorites. 
   # This method below will allow us to ensure that the correct user has access to edit his or her info. 
   def ensure_correct_user 
