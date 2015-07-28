@@ -13,10 +13,10 @@ class UsersController < ApplicationController
   		if @user.save
         session[:user_id] = @user.id
   			redirect_to users_path, flash: {success: "#{@user.first_name} created"}
-  		else 
+  		else
   			render :new
-  		end	
-  end		
+  		end
+  end
 
   def show # view not finished
     @user = User.find params[:id]
@@ -48,6 +48,18 @@ class UsersController < ApplicationController
     redirect_to login_path
 
   end
+
+  def search
+    coordinates = { latitude: params[:lat], longitude: params[:lng] }
+    puts coordinates
+  end
+
+  def results
+    # testing receiving lat lng from user.js AJAX get request
+    puts params
+    render json: "this is where the Yelp search results will be"
+  end
+
 
 # added avatar info into the def user_params
   private
