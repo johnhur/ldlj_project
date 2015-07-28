@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end	
 
   def show
+    @user = User.find (params[:id])
   end
 
 # added avatar info into the def user_params
