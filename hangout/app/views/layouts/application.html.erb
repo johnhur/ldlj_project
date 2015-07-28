@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "Sign Out", logout_path, method: :delete %>
+
   <div class="main container">
     <% flash.each do |key, value| %>
       <% if key == "notice" %>
@@ -20,7 +20,6 @@
       <% end %>
     <% end %>
     <%= yield %>
-
 
   </div>
 

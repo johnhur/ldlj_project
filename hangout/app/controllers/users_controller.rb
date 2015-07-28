@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
   	params.require(:user).permit(
   		:first_name,
@@ -53,4 +54,14 @@ class UsersController < ApplicationController
   		:password
   		)
   end	
+
+  # We don't want other users to edit another user's info or favorites. 
+  # This method below will allow us to ensure that the correct user has access to edit his or her info. 
+  def ensure_correct_user 
+    # compare some params vs something in the session/current_user
+    unless params[:id].to_i == session[:user_id]
+      redirect_to all_teams_path, alert: "Not Authorized"
+    end
+  end
+
 end
