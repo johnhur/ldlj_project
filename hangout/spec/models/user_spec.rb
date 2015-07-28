@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'User' do
-
   subject(:user) { User.create(
                             first_name: "Fifi",
                             email: "example.com",
@@ -11,10 +10,10 @@ describe 'User' do
 
     [:first_name, :img_url, :email, :password].each do |prop|
         it {is_expected.to respond_to prop}
-
     end
 
     #This tests for uniqueness in the User model
+
     [:email].each do |prop|
     	it { is_expected.to validate_presence_of :email}
     end 
