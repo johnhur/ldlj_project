@@ -1,4 +1,6 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, :html => { :multipart => true }  do |f| %>
+	<%= f.file_field :avatar %>
+	
 	<%= render partial: 'users/errors', locals:{instance:@user} %>
 	<div class="form-group">
 		<%= f.label :first_name %>

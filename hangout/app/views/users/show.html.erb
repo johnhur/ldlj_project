@@ -1,6 +1,10 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
+<%= image_tag @user.avatar.url %>
+<%= image_url @user.avatar.url(:medium) %>
+<%= image_url @user.avatar.url(:thumb) %>
+
 <ul>
 <p><img src="<%= @user.img_url %>"></p>
 <li><%= @user.first_name %></li>
@@ -9,4 +13,5 @@
 <%= link_to "Edit #{@user.first_name}'s Info",edit_user_path(@user)%>
 <%= link_to "Delete #{@user.first_name}"'s account', user_path(@user), method: :delete %>
 </ul>
+
 
