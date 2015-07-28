@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150728182307) do
-=======
-ActiveRecord::Schema.define(version: 20150728004549) do
->>>>>>> 4c025749094ac01d5bb30336c1b3c997a0421f9b
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +42,8 @@ ActiveRecord::Schema.define(version: 20150728004549) do
     t.string   "business_img_url"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "address"
+    t.string   "category"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,5 +65,4 @@ ActiveRecord::Schema.define(version: 20150728004549) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "places"
   add_foreign_key "favorites", "users"
-end
 end
