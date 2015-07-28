@@ -17,10 +17,30 @@ class UsersController < ApplicationController
   		end	
   end		
 
+  def show
+    @user = User.find params[:id]
+  end
+
   def edit
+    @user = User.find params[:id]
   end	
 
-  def show
+  def update
+    @user = User.find params[:id]
+    @user.update user_params
+    if @user.save
+      redirect_to users_path, flash: {success: "#{@user.first_name} updated"}
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @user = User.find params[:id]
+    @user.destroy
+    session[:user_id] = nil
+    flash[:notice] = "User Deleted"
+    redirect_to login_path
   end
 
   private
