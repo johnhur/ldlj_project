@@ -18,12 +18,84 @@ $main-purple: #53455c;
 	text-align: center;
 }
 
+#larger {
+	background: url("restaurant-690569_1280.jpg") no-repeat center center fixed;
+	height: 855px;
+	padding-top: 15%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	// height: 768px;
+	// width: 1024px;
+}
+
+// .navigation-bar {
+// 	height: 50px;
+// 	background-color: $main-gray-neutral;
+// }
+
 h1 {
 	color: $main-dark-blue;
 }
 
 .median-logo {
 	// background-image: url("median-logo1.png");
+}
+
+.label {
+	// position: relative;
+	// margin-bottom: 2px;
+}
+
+.login-container {
+	position: relative;
+	margin-top: 50px;
+}
+
+.login-background-color {
+	background-color: $main-gray-neutral;
+	@include rounded-corners(10px);
+
+	opacity: 0.9;
+	position: relative;
+	padding: 10px 0 10px 0;
+	width: 30%;
+}
+
+.form-group {
+	margin-top: 10px;
+	position: relative;
+}
+
+#submit-user {
+	margin-top: 20px;
+	@include rounded-corners(5px);
+}
+
+.signup-link {
+	margin-top: 10px;
+	position: relative;
+}
+
+
+.ui.inverted.segment.footer {
+	position: fixed;
+	background-color: $main-dark-blue;
+	bottom: 0;
+	left: 0;
+	height: 100px;
+	width: 100%;
+	// position: absolute;
+	// top: 500px;
+	// height: 120px;
+	// width: 100%;
+	// margin: 0 auto;
+	// clear: both;
+	// height: 150px;
+	// margin-top: -150px;
+	// position: relative;
+
 }
 
 .test {

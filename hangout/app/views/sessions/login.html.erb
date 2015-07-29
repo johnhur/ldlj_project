@@ -1,32 +1,60 @@
-<h1>Welcome to Median</h1>
+<!-- <div class="navigation-bar">here</div> -->
 
-<div class="image"><%= image_tag("median-logo1.png") %></div>
-
-<div class="col-sm-offset-3">
+<!-- <div class="col-sm-offset-3">
   <div class="col-sm-7">
-    <div class="well">
-      <h2>Sign into HangOut</h2><br>
+    <div class="well"> -->
+<div id="larger">    
+<!-- <div id="desktop-container"> -->
+  <!-- <div class="login-container"> -->
+    <div class="login-background-color">
+      
+      <h1>
+        <div class="median-logo">
+          <%= image_tag("median-logo1.png") %>
+        </div>
+      </h1> 
+
+      <h3>Login</h3>
+ 
       <%= form_tag login_path do %>
-        <div class="form-group">
-          <%= label_tag :email, nil, class:"control-label" %>
+ 
+        <div class="form-group">   
+          <div class="label">
+            <%= label_tag :email, nil, class:"control-label" %>
+          </div>
+          
           <%= text_field_tag :email, params[:email], autofocus: true, class:"form-control" %>
-        </div>
+        <!-- </div> -->
 
+      
         <div class="form-group">
-          <%= label_tag :password, nil, class:"control-label" %>
-          <%= password_field_tag :password, params[:password], class:"form-control" %>
+          <div class="label":><%= label_tag :password, nil, class:"control-label" %></div>
+            <%= password_field_tag :password, params[:password], class:"form-control" %>
         </div>
 
-      <p>  <%= submit_tag "Log in", id:"submit-user", class:"btn btn-block btn-primary" %></p>
+        <p>
+          <%= submit_tag "Log in", id:"submit-user" %>
+        </p>
+
       <% end %>
-      <%= link_to "Don't have an account? Sign up here", new_user_path %>
-<<<<<<< HEAD
-  <div class="test">test</div>
-=======
-      <p>
-        <%= link_to "Forgot your password?", new_reset_path, :id => "Forgot your password?"%>
-      </p>
->>>>>>> 7c72c2c90d07baf809d804a22501b97160a5bc4f
+
+        <div class="signup-link">
+          <%= link_to "Don't have an account? Sign up here", new_user_path %>
+        </div>
+  <!-- <div class="test">test</div> -->
+
     </div>
   </div>
+      <div class="ui inverted segment footer">
+        <div class="ui inverted secondary menu">
+          <a class="active item">
+            About
+          </a>  
+        </div>
+      </div> 
 </div>
+</div>
+<!--     </div>
+  </div>
+</div> -->
+
