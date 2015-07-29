@@ -1,3 +1,32 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$main-dark-blue: #394263;
+$main-gray-neutral: #e8e9fe;
+$main-turquoise: #20b6ad;
+$main-light-blue: #559adf;
+$main-purple: #53455c;
+
+@mixin rounded-corners($radius: 5px) {
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+}
+
+* {
+	margin: 0 auto;
+	text-align: center;
+}
+
+h1 {
+	color: $main-dark-blue;
+}
+
+.median-logo {
+	// background-image: url("median-logo1.png");
+}
+
+.test {
+	background-color: $main-turquoise;
+	@include rounded-corners(5px);
+}
