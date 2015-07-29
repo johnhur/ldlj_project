@@ -14,13 +14,5 @@
  *= require_self
  */
 
-body{
-	margin: 10%;
+@import "semantic-ui";
 
-}
-
-#map-canvas {
-	margin-left: 2%;
-	width: 100%;
-	height: 400px;
-}
