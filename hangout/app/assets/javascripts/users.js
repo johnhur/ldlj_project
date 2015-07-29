@@ -98,7 +98,7 @@ $(function() {
   // when you click the search submit button, this runs
   $("input[type='submit']").click(function(e) {
     e.preventDefault();
-    // calling the searchYelp function, which is directly below
+    // calling the searchYelp function
     // and passing in the geolocation global variables
     searchYelp(userLat, userLong);
   })
