@@ -7,7 +7,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?v=3.20&signed_in=true"></script>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller_name %> <%= action_name %>">
 <% if logged_in? %>
 <%= link_to "usersIndex", users_path() %>
 <%= link_to "User Show Page", user_path(session[:user_id])%>

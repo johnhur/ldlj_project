@@ -1,4 +1,9 @@
 // wrap other $() operations on your page that depend on the DOM being ready
+// $(".users.new").ready(function(){
+//   alert("HELLO")
+// })  
+// another way to specify a page specific event, but this needs turbo-links to work, which is not the case for us.
+
 $(function() {
 
 	renderHandlebars();
@@ -96,7 +101,7 @@ $(function() {
   }
 
   // when you click the search submit button, this runs
-  $("input[type='submit']").click(function(e) {
+  $("input[value='search']").click(function(e) { // ***** must select the search button only..
     e.preventDefault();
     // calling the searchYelp function, which is directly below
     // and passing in the geolocation global variables
