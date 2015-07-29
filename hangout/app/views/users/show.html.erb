@@ -1,17 +1,16 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Hello, <%= @current_user.first_name %>!</h1>
 
-<%= image_tag @user.avatar.url %>
-<%= image_url @user.avatar.url(:medium) %>
-<%= image_url @user.avatar.url(:thumb) %>
+<%= image_tag @current_user.avatar.url %>
+<%= image_url @current_user.avatar.url(:medium) %>
+<%= image_url @current_user.avatar.url(:thumb) %>
 
 <ul>
-<p><img src="<%= @user.img_url %>"></p>
-<li><%= @user.first_name %></li>
-<li><%= @user.email %></li>
-<li><%= @user.address%></li>
-<%= link_to "Edit #{@user.first_name}'s Info",edit_user_path(@user)%>
-<%= link_to "Delete #{@user.first_name}"'s account', user_path(@user), method: :delete %>
+<p><img src="<%= @current_user.img_url %>"></p>
+<li><%= @current_user.first_name %></li>
+<li><%= @current_user.email %></li>
+<li><%= @current_user.address%></li>
+<%= link_to "Edit #{@current_user.first_name}'s Info",edit_user_path(@current_user)%>
+<%= link_to "Delete #{@current_user.first_name}"'s account', user_path(@current_user), method: :delete %>
 </ul>
 
 

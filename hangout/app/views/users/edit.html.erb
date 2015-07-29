@@ -1,8 +1,7 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Edit Your Profile</h1>
 
-<%= form_for(@user) do |f| %>
-	<%= render partial: 'users/errors', locals:{instance:@user} %>
+<%= form_for(@current_user) do |f| %>
+	<%= render partial: 'users/errors', locals:{instance:@current_user} %>
 	<div class="form-group">
 		<%= f.label :first_name %>
 		<%= f.text_field :first_name %>

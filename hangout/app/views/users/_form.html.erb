@@ -1,6 +1,6 @@
 <%= form_for @user, :html => { :multipart => true }  do |f| %>
 	<%= f.file_field :avatar %>
-	
+
 	<%= render partial: 'users/errors', locals:{instance:@user} %>
 	<div class="form-group">
 		<%= f.label :first_name %>
@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="form-group">
-		<%= f.label :password %>	
+		<%= f.label :password %>
 		<%= f.password_field :password %>
 	</div>
 
@@ -31,4 +31,4 @@
 		<%= f.submit %>
 	</div>
 
-<% end %>	
+<% end %>

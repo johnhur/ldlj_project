@@ -14,5 +14,18 @@
  *= require_self
  */
 
+<<<<<<< HEAD:hangout/app/assets/stylesheets/application.css.scss
 @import "semantic-ui"
 
+=======
+body{
+	margin: 10%;
+
+}
+
+#map-canvas {
+	margin-left: 2%;
+	width: 100%;
+	height: 400px;
+}
+>>>>>>> 22c2583198210dfe4bb147039ba40f1e136fb598:hangout/app/assets/stylesheets/application.css

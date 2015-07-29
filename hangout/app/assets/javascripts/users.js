@@ -1,10 +1,18 @@
 // wrap other $() operations on your page that depend on the DOM being ready
+// $(".users.new").ready(function(){   
+//   alert("HELLO")    
+// })      
+// another way to specify a page specific event, but this needs turbo-links to work, which is not the case for us.
+
 $(function() {
 
-	renderPlaces();
+	renderHandlebars();
   var directionsDisplay;
   var directionsService = new google.maps.DirectionsService();
   var map;
+  // geolocation variables
+  var userLat;
+  var userLong;
   var userLatLong;
   var transitLayer;
   var bikeLayer;
@@ -39,6 +47,8 @@ $(function() {
 
   } // closing tag for initialize function
 
+// ----------------------------- GEOLOCATION -----------------------------
+
   function checkForLoc() {
     if (Modernizr.geolocation) {
       navigator.geolocation.getCurrentPosition(getLoc, resErr);
@@ -49,8 +59,9 @@ $(function() {
   }
 
   function getLoc(location) {
-    var userLat = location.coords.latitude;
-    var userLong = location.coords.longitude;
+    // variables declared globally at the top of the page
+    userLat = location.coords.latitude;
+    userLong = location.coords.longitude;
     userLatLong = new google.maps.LatLng(userLat, userLong);
     var marker = new google.maps.Marker({
       position: userLatLong,
@@ -74,7 +85,7 @@ $(function() {
     getWeather(weather);
   }
 
-
+// ----------------------------- WEATHER LAYER OBJECT -----------------------------
   function getWeather(weather) {
     $.ajax({
       url: weather,
@@ -91,23 +102,41 @@ $(function() {
     });
   }
 
+// ----------------------------- SEARCH YELP -----------------------------
+  // click search & call searchYelp function with geolocation global variables
+  // must select the search button only
+  $("input[value='search']").click(function(e) {
+    e.preventDefault();
+    searchYelp(userLat, userLong);
+  })
 
-  function renderPlaces() {
-    // At its most basic, Handlebars is just a place to put your client-side HTML
-    // Handlebars makes sure it's clean and safe
-    // Right now we're just appending the hbs file to the erb view;
-    // we will need an AJAX call here once we
-    // have some info from the Yelp search
-    // need the path to the hbs file here
+  function searchYelp(lat, lng) {
+    $.ajax({
+      // url looks for 'results' action (see routes.rb)
+      url: '/results?lat=' + lat + '&long=' + lng,
+      method: 'get',
+      dataType: 'json'
+    }).done(function(data) {
+      console.log(data)
+    })
+  }
+
+// ----------------------------- HANDLEBARS -----------------------------
+
+  // At its most basic, Handlebars is just a place to put your client-side HTML
+  // Handlebars makes sure it's clean and safe
+  // need the path to the hbs file here
+  function renderHandlebars() {
     var html = HandlebarsTemplates['users/index'](); // data goes in parens when you're sending data to hbs file
-    // John and Tim pointed out, we're using an ID because only one ID (so don't get an array)
+    // Use an ID to ensure only one, we don't an array
     $('#map').append(html);
   }
 
   initialize();
   checkForLoc();
-  
-  //display public transit network using the TransitLayer object
+
+
+// ----------------------------- TRANSIT LAYER OBJECT -----------------------------
   function showTransit() {
     bikeLayer.setMap(null);
     trafficLayer.setMap(null);
@@ -138,6 +167,7 @@ $(function() {
     };
   }
 
+// ----------------------------- JQUERY EVENT HANDLERS -----------------------------
   $("#transit").click(function(event) {
     event.stopPropagation();
     showTransit();
