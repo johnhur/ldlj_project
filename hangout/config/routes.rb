@@ -12,14 +12,13 @@ Rails.application.routes.draw do
 
 	# root 'users#index'
 
-	get '/search', to: 'users#search'
-	# the AJAX get request from the user.js file is looking for
-	# the results action here
-	get '/results', to: 'users#results'
-
-
   resources :users
   resources :places
+
+  get '/search', to: 'users#search'
+  # the AJAX get request from the user.js file is looking for
+  # the results action here
+  get '/results', to: 'users#results'
 end
 
 # Prefix Verb   URI Pattern                Controller#Action
