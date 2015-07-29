@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   def index
   	@users = User.all
-    # current_user # method from application_controller
   end
 
   def new
