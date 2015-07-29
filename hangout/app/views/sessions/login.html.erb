@@ -20,6 +20,9 @@
       <p>  <%= submit_tag "Log in", id:"submit-user", class:"btn btn-block btn-primary" %></p>
       <% end %>
       <%= link_to "Don't have an account? Sign up here", new_user_path %>
+      <p>
+        <%= link_to "Forgot your password?", new_reset_path, :id => "Forgot your password?"%>
+      </p>
     </div>
   </div>
 </div>

@@ -71,7 +71,8 @@ class UsersController < ApplicationController
   		:email,
   		:img_url,
   		:address,
-  		:password
+  		:password,
+      :password_reset_token
   		)
   end	
   # We don't want other users to edit another user's info or favorites. 

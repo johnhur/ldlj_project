@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
+	# removed validates password because has_secure_password does this for you
 	validates :email, presence: true
-	validates :password, presence: true
 	# we will add in additional validations later on
 	
 	# added avatar information 
@@ -16,4 +16,9 @@ class User < ActiveRecord::Base
 	has_many :places, through: :comments
 
 	has_secure_password
+
+	def generate_password_reset_token!
+	   update(password_reset_token: SecureRandom.urlsafe_base64(48))
+	end
+
 end
