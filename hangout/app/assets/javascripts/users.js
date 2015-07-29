@@ -2,6 +2,9 @@
 // $(".users.new").ready(function(){
 //   alert("HELLO")
 // })
+// $(".users.new").ready(function(){
+//   alert("HELLO")
+// })
 // another way to specify a page specific event, but this needs turbo-links to work, which is not the case for us.
 
 $(function() {
@@ -47,6 +50,8 @@ $(function() {
 
   } // closing tag for initialize function
 
+// ----------------------------- GEOLOCATION -----------------------------
+
   function checkForLoc() {
     if (Modernizr.geolocation) {
       navigator.geolocation.getCurrentPosition(getLoc, resErr);
@@ -83,7 +88,7 @@ $(function() {
     getWeather(weather);
   }
 
-
+// ----------------------------- WEATHER LAYER OBJECT -----------------------------
   function getWeather(weather) {
     $.ajax({
       url: weather,
@@ -100,17 +105,17 @@ $(function() {
     });
   }
 
-  // when you click the search submit button, this runs
-  $("input[value='search']").click(function(e) { // ***** must select the search button only..
+// ----------------------------- SEARCH YELP -----------------------------
+  // click search & call searchYelp function with geolocation global variables
+  // must select the search button only
+  $("input[value='search']").click(function(e) {
     e.preventDefault();
-    // calling the searchYelp function
-    // and passing in the geolocation global variables
     searchYelp(userLat, userLong);
   })
 
   function searchYelp(lat, lng) {
     $.ajax({
-      // url is looking for the results action (see routes.rb)
+      // url looks for 'results' action (see routes.rb)
       url: '/results?lat=' + lat + '&long=' + lng,
       method: 'get',
       dataType: 'json'
@@ -119,20 +124,22 @@ $(function() {
     })
   }
 
+// ----------------------------- HANDLEBARS -----------------------------
 
+  // At its most basic, Handlebars is just a place to put your client-side HTML
+  // Handlebars makes sure it's clean and safe
+  // need the path to the hbs file here
   function renderHandlebars() {
-    // At its most basic, Handlebars is just a place to put your client-side HTML
-    // Handlebars makes sure it's clean and safe
-    // need the path to the hbs file here
     var html = HandlebarsTemplates['users/index'](); // data goes in parens when you're sending data to hbs file
-    // John and Tim pointed out, we're using an ID because only one ID (so don't get an array)
+    // Use an ID to ensure only one, we don't an array
     $('#map').append(html);
   }
 
   initialize();
   checkForLoc();
 
-  //display public transit network using the TransitLayer object
+
+// ----------------------------- TRANSIT LAYER OBJECT -----------------------------
   function showTransit() {
     bikeLayer.setMap(null);
     trafficLayer.setMap(null);
@@ -163,6 +170,7 @@ $(function() {
     };
   }
 
+// ----------------------------- JQUERY EVENT HANDLERS -----------------------------
   $("#transit").click(function(event) {
     event.stopPropagation();
     showTransit();

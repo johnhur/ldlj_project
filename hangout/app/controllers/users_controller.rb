@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  before_action :current_user, except: [:new, :create]  
 
   def index
   	@users = User.all
+    # current_user # method from application_controller
   end
 
   def new
@@ -18,47 +20,29 @@ class UsersController < ApplicationController
   		end
   end
 
-  def show # view not finished
-    @user = User.find params[:id]
+  def show
   end
 
   def edit
-    @user = User.find params[:id]
   end	
 
-  def show
-    @user = User.find (params[:id])
-  end 
-
   def update
-    @user = User.find params[:id]
-    @user.update user_params
-    if @user.save
-      redirect_to users_path, flash: {success: "#{@user.first_name} updated"}
+    @current_user.update user_params
+    if @current_user.save
+      redirect_to users_path, flash: {success: "#{@current_user.first_name} updated"}
     else
       render :edit
     end
   end
 
   def destroy
-    @user = User.find params[:id]
-    @user.destroy
+    @current_user.destroy
     session[:user_id] = nil
-    flash[:notice] = "#{@user.first_name} has been deleted!"
+    flash[:notice] = "#{@current_user.first_name} has been deleted!"
     redirect_to login_path
 
   end
 
-  def search
-    coordinates = { latitude: params[:lat], longitude: params[:lng] }
-    puts coordinates
-  end
-
-  def results
-    # testing receiving lat lng from user.js AJAX get request
-    puts params
-    render json: "this is where the Yelp search results will be"
-  end
 
 
 # added avatar info into the def user_params
