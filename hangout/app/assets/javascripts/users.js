@@ -108,7 +108,7 @@ $(function() {
 // ----------------------------- SEARCH YELP -----------------------------
   // click search & call searchYelp function with geolocation global variables
   // must select the search button only
-  $("input[value='search']").click(function(e) {
+  $("input[value='Search']").click(function(e) {
     e.preventDefault();
     searchYelp(userLat, userLong);
   })
