@@ -13,7 +13,6 @@
  *= require_tree .
  *= require_self
  */
-#map-canvas {
-	width: 100%;
-	height: 600px;
-}
+
+@import "semantic-ui";
+
