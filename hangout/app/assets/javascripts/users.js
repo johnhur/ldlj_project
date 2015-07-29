@@ -21,6 +21,9 @@ $(function() {
   var mapLat = 37.768120;
   var mapLong = -122.441875;
 
+ 
+// ----------------------------- INITIALIZE MAP -----------------------------
+
   function initialize() {
     // get the div element to put the map in
     var mapDiv = document.getElementById('map-canvas');
@@ -30,14 +33,14 @@ $(function() {
       suppressInfoWindows: true
     });
 
-    // MapOptions fields which affect the visibility and presentation of controls
+    // MapOptions: visibility and presentation of controls
     var mapOptions = {
       zoom: 12,
       center: new google.maps.LatLng(mapLat, mapLong),
       mapTypeId: google.maps.MapTypeId.TERRAIN
     };
 
-    // Map constructor creates a new map using any optional parameters that are passed in
+    // Map constructor: create new map. Pass in optional parameters.
     map = new google.maps.Map(mapDiv, mapOptions);
     directionsDisplay.setMap(map);
 
@@ -45,7 +48,7 @@ $(function() {
     bikeLayer = new google.maps.BicyclingLayer();
     trafficLayer = new google.maps.TrafficLayer();
 
-  } // closing tag for initialize function
+  } // close initialize function
 
 // ----------------------------- GEOLOCATION -----------------------------
 
@@ -59,7 +62,7 @@ $(function() {
   }
 
   function getLoc(location) {
-    // variables declared globally at the top of the page
+    // variables declared globally, see top of script
     userLat = location.coords.latitude;
     userLong = location.coords.longitude;
     userLatLong = new google.maps.LatLng(userLat, userLong);
@@ -127,7 +130,7 @@ $(function() {
   // Handlebars makes sure it's clean and safe
   // need the path to the hbs file here
   function renderHandlebars() {
-    var html = HandlebarsTemplates['users/index'](); // data goes in parens when you're sending data to hbs file
+    var html = HandlebarsTemplates['users/index'](); // place data in parens when you're sending data to hbs file
     // Use an ID to ensure only one, we don't an array
     $('#map').append(html);
   }

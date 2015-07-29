@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(version: 20150729003610) do
     t.string   "business_img_url"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "address"
-    t.string   "category"
   end
 
   create_table "users", force: :cascade do |t|
