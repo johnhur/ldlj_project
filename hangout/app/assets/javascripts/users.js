@@ -1,7 +1,7 @@
 // wrap other $() operations on your page that depend on the DOM being ready
 // $(".users.new").ready(function(){
 //   alert("HELLO")
-// })  
+// })
 // another way to specify a page specific event, but this needs turbo-links to work, which is not the case for us.
 
 $(function() {
