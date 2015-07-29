@@ -49,16 +49,6 @@ class UsersController < ApplicationController
 
   end
 
-  def search
-    coordinates = { latitude: params[:lat], longitude: params[:lng] }
-    puts coordinates
-  end
-
-  def results
-    # testing receiving lat lng from user.js AJAX get request
-    puts params
-    render json: "this is where the Yelp search results will be"
-  end
 
 
 # added avatar info into the def user_params

@@ -15,10 +15,10 @@ Rails.application.routes.draw do
   resources :users
   resources :places
 
-  get '/search', to: 'users#search'
+  get '/search', to: 'places#search'
   # the AJAX get request from the user.js file is looking for
   # the results action here
-  get '/results', to: 'users#results'
+  get '/results', to: 'places#results'
 end
 
 # Prefix Verb   URI Pattern                Controller#Action
