@@ -1,9 +1,6 @@
 class PlacesController < ApplicationController
 
-	def index #create a search
-		new_search =  Yelp.client.search('San Francisco', {term: 'food'})
-		@results = new_search.businesses[0].name
-	 
+	def index 	 
 	end
 
 	def search
@@ -13,10 +10,14 @@ class PlacesController < ApplicationController
 
   def results
 
-    # testing receiving lat lng from user.js AJAX get request
+    # lat lng from user.js AJAX get request
     # binding.pry
     @lat = params[:lat]
     @long = params[:long]
+
+    # new_search =  Yelp.client.search('San Francisco', {term: 'food'})
+    new_search =  Yelp.client.search('San Francisco', {term: 'food'})
+		@results = new_search.businesses[0].name
     
     binding.pry
     puts params
