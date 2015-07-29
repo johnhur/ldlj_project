@@ -6,6 +6,16 @@
 	<%= user.first_name %>
 <% end %>
 
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "Search for a category:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<p>Business Name: <%= @res_name %></p>
+<p>Distance from you, in meters: <%= @res_dist %></p>
+<p>Business Address: <%= @res_addr %></p>
+
 <div><h1 id='map'>Here is our Map, made by appending Handlebars</h1></div>
 
 

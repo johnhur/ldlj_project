@@ -1,10 +1,13 @@
 // wrap other $() operations on your page that depend on the DOM being ready
 $(function() {
 
-	renderPlaces();
+	renderHandlebars();
   var directionsDisplay;
   var directionsService = new google.maps.DirectionsService();
   var map;
+  // geolocation variables
+  var userLat;
+  var userLong;
   var userLatLong;
   var transitLayer;
   var bikeLayer;
@@ -49,8 +52,9 @@ $(function() {
   }
 
   function getLoc(location) {
-    var userLat = location.coords.latitude;
-    var userLong = location.coords.longitude;
+    // variables declared globally at the top of the page
+    userLat = location.coords.latitude;
+    userLong = location.coords.longitude;
     userLatLong = new google.maps.LatLng(userLat, userLong);
     var marker = new google.maps.Marker({
       position: userLatLong,
@@ -91,13 +95,29 @@ $(function() {
     });
   }
 
+  // when you click the search submit button, this runs
+  $("input[type='submit']").click(function(e) {
+    e.preventDefault();
+    // calling the searchYelp function, which is directly below
+    // and passing in the geolocation global variables
+    searchYelp(userLat, userLong);
+  })
 
-  function renderPlaces() {
+  function searchYelp(lat, lng) {
+    $.ajax({
+      // url is looking for the results action (see routes.rb)
+      url: '/results?lat=' + lat + '&long=' + lng,
+      method: 'get',
+      dataType: 'json'
+    }).done(function(data) {
+      console.log(data)
+    })
+  }
+
+
+  function renderHandlebars() {
     // At its most basic, Handlebars is just a place to put your client-side HTML
     // Handlebars makes sure it's clean and safe
-    // Right now we're just appending the hbs file to the erb view;
-    // we will need an AJAX call here once we
-    // have some info from the Yelp search
     // need the path to the hbs file here
     var html = HandlebarsTemplates['users/index'](); // data goes in parens when you're sending data to hbs file
     // John and Tim pointed out, we're using an ID because only one ID (so don't get an array)
@@ -106,7 +126,7 @@ $(function() {
 
   initialize();
   checkForLoc();
-  
+
   //display public transit network using the TransitLayer object
   function showTransit() {
     bikeLayer.setMap(null);
