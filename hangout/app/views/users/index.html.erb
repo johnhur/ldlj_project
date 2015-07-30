@@ -21,9 +21,11 @@
 			About
 		</a>	
 	
-	</div>
+		<a class="active item">
+			<h1>Welcome Back, <%= @current_user.first_name %>!</h1>
+		</a>
 
-	<h1>Welcome Back, <%= @current_user.first_name %>!</h1>
+	</div>
 
 <!-- testing available users -->
 	<% @users.each do |user| %>
@@ -35,13 +37,26 @@
 		<div class="column first">
 	
 	<div class ="search-container">
+		
+		<form class="ui form">
+		
 		<%= form_tag("/search", method: "get") do %>
-  		<%= label_tag(:q, "Search for a category:") %><br/>
-  		<%= text_field_tag(:q) %>
-  		<%= submit_tag("Search") %>
+  		
+  		<label>
+  			<%= label_tag(:q, "Search for a category:") %></label><br/>
+  			<%= text_field_tag(:q) %>
+  			<%= submit_tag("Search") %>
 		<% end %>
 
-		<p class="search-field">Business Name: <%= @res_name %></p>
+	<form class="ui form">
+		<div class="field">
+		<p class="search-field">
+			<label>Business Name: <%= @res_name %></label>
+			<input type="text" name="business" placeholder="business name">
+  </div>
+		</p>
+		</div>
+		
 		<p class="search-field">Distance from you, in meters: <%= @res_dist %></p>
 		<p class="search-field">Business Address: <%= @res_addr %></p>
 	</div>		
@@ -50,6 +65,7 @@
 			<div class="column first">
 				<div id='map'></div>
 			</div>
+	</form>		
 </div>		
 
 

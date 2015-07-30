@@ -37,6 +37,10 @@ a.active.item {
 	padding-right: 10px; 
 }
 
+h1 {
+	color: white;
+}
+
 img {
 	height: 25px;
 
@@ -68,6 +72,23 @@ p.search-field {
 
 #forecast, .col-md-8 {
 	display: none;
+}
+
+div.search-container {
+	background-color: white;
+	border-radius: 5px;
+	color: black;
+	right: 50px;
+	width: 60%;
+}
+
+div.column.first, .search-field {
+	text-align: justify;
+	left: 50px;
+}
+
+div.gymnoprint {
+	float: right;
 }
 
 #signup-larger {
@@ -144,3 +165,45 @@ p.search-field {
 // 	position: relative;
 // 	left: 200px;
 // }
+
+// This code is for the user show page
+
+body.users.show {
+	text-align: center;
+	background: url("city-restaurant-lunch-outside.jpg");
+	height: 855px;
+	padding-top: 15%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.show-profile-info {
+	background-color: white;
+	@include rounded-corners(10px);
+
+	opacity: 1;
+	position: relative;
+	padding: 100px 0 100px 0;
+	// height: 70%;
+	width: 40%;
+}
+
+ul {
+	list-style-type: none;
+	padding-top: 5px;
+	text-align: center;
+}
+
+li {
+	font-size: 20px;
+	padding-top: 5px;
+}
+
+.show-h1 {
+	color: $main-dark-blue;
+}
+
+
+
