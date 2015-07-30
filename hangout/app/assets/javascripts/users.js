@@ -29,6 +29,8 @@ $(function() {
   var weather;
   var mapLat = 37.768120;
   var mapLong = -122.441875;
+  // yelp global variables
+  var userTerm;
 
 
 // ----------------------------- INITIALIZE MAP -----------------------------
@@ -119,20 +121,21 @@ $(function() {
   // must select the search button only
   $("input[value='Search']").click(function(e) {
     e.preventDefault();
-    searchYelp(userLat, userLong);
-  })
+    userTerm = $(".user_term").val();
+    searchYelp(userLat, userLong, userTerm);
+  });
 
-  function searchYelp(lat, lng) {
+  function searchYelp(lat, lng, term) {
     $.ajax({
       // url looks for 'results' action (see routes.rb)
       // the lat and lng in the URL string can be any words, as long as the
       // same words are used in the params in the places controller method
-      url: '/results?lat=' + lat + '&lng=' + lng,
+      url: '/results?lat=' + lat + '&lng=' + lng + '&term=' + term, 
       method: 'get',
       dataType: 'json'
     }).done(function(data) {
-      console.log(data)
-    })
+      console.log(data);
+    });
   }
 
 // ----------------------------- HANDLEBARS -----------------------------
@@ -158,7 +161,7 @@ $(function() {
       transitLayer.setMap(map);
     } else {
       transitLayer.setMap(null);
-    };
+    }
   }
 
   function showBike() {
@@ -168,7 +171,7 @@ $(function() {
       bikeLayer.setMap(map);
     } else {
       bikeLayer.setMap(null);
-    };
+    }
   }
 
   function showTraffic() {
@@ -178,7 +181,7 @@ $(function() {
       trafficLayer.setMap(map);
     } else {
       trafficLayer.setMap(null);
-    };
+    }
   }
 
 // ----------------------------- JQUERY EVENT HANDLERS -----------------------------
