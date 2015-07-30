@@ -1,3 +1,27 @@
+<div class="edit-picture-page">
+
+<div class="ui inverted segment show">
+    <div class="ui inverted secondary menu">
+    <a class="active item">
+			<%= image_tag("median-logo2.png") %>
+		</a>
+		
+		<a class="active item image">
+			<%= image_tag("median-icon2.png") %>
+		</a>
+		
+		<a class="active item">
+			Home
+		</a>
+		
+		<a class="active item">
+			Contact
+		</a>
+      <a class="active item">
+        About
+      </a>  
+    </div>
+  </div> 
 
 <div class="edit-profile-form">
 <h1 class="show-h1">Edit Your Profile</h1>
@@ -11,22 +35,22 @@
 	</div>
 
 	<div class="form-group">
-		<%= f.label :email %>
+		<%= f.label :email %><br>
 		<%= f.text_field :email %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :img_url %>
+		<%= f.label :img_url %><br>
 		<%= f.text_field :img_url %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :address %>
+		<%= f.label :address %><br>
 		<%= f.text_field :address %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :password %>	
+		<%= f.label :password %><br>	
 		<%= f.password_field :password %>
 	</div>
 <p></p>
@@ -36,4 +60,5 @@
 </div>	
 
 <% end %>	
+</div>
 </div>
