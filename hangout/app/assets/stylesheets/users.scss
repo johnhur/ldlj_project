@@ -43,7 +43,10 @@ h1 {
 
 img {
 	height: 25px;
+}
 
+.ui.form {
+	padding-bottom: 1.5em;
 }
 
 p.search-field {
@@ -67,7 +70,7 @@ p.search-field {
 }
 
 .col-md-2 {
-	background-color: $main-dark-blue;
+	background-color: $main-gray-neutral;
 }
 
 #forecast, .col-md-8 {
