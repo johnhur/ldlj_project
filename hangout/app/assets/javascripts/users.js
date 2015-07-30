@@ -82,9 +82,9 @@ $(function() {
       position: userLatLong,
       map: map,
       title: "You Are Here!",
-      icon: 'usermarker.png'
+      icon: 'person.png'
     });
-    
+
     weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
     getWeather(weather);
 
@@ -146,6 +146,7 @@ $(function() {
       }).done(function(data) {
         data['businesses'].forEach(function(business) {
           var placeName = business.name;
+          var placeRating = business.rating_img_url_small;
           var placeImg = business.image_url;
           var placeUrl = business.url;
           var placeLat = business.location.coordinate.latitude;
@@ -160,8 +161,10 @@ $(function() {
             icon: 'place.png'
           });
 
+          // Thanks to Dom for inspiration on styling these infowindows
+          // and closing previous open infowindow when another marker is clicked
           google.maps.event.addListener(marker, 'click', function() {
-            var content = '<h5>' + placeName + '</h5>' + '<a href=' + placeUrl + ' target="_blank"><img src=' + placeImg + '></a>';
+            var content = '<h5>' + placeName + '</h5>' + '<a href=' + placeUrl + ' target="_blank"><img src=' + placeImg + '></a><div><img src=' + placeRating + '></div>';
             infowindow.close();
             infowindow.setContent(content);
             infowindow.open(marker.get('map'), marker);
@@ -186,16 +189,15 @@ function getMidpoint() {
   position: smitten,
   map: map,
   title: "MidPoint",
-  icon: 'usermarker.png'
+  icon: 'person.png'
   });
-  
   mid_marker = new google.maps.Marker({
   position: mid,
   map: map,
   title: "MidPoint",
-  icon: 'usermarker.png'
+  icon: 'person.png'
   });
- 
+
 }
 
     // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
