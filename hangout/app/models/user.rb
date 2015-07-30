@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
 	# removed validates password because has_secure_password does this for you
 	validates :email, presence: true
+	
 	# we will add in additional validations later on
 	
 	# added avatar information 
