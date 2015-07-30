@@ -18,7 +18,8 @@
 			About
 		</a>
 		<a class="active item">
-			<h3>Welcome Back, <%= @current_user.first_name %>!</h3>
+			<!-- The class="index" in the h1 tag below is needed (the users.js file is looking for it); please don't remove it -->
+			<h1 class="index">Welcome To Median, <%= @current_user.first_name %>!</h1>
 		</a>
 	</div>
 
@@ -59,7 +60,6 @@
 				<div id='map'></div>
 			</div>	
 </div>		
-<!-- The class="index" in the h1 tag below is needed (the users.js file is looking for it); please don't remove it -->
 
 <!-- <div class="ui grid">
 	<div id='map' class="eight column row"></div>
