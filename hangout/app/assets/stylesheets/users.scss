@@ -220,6 +220,17 @@ ui.inverted.segment.show {
 	right: 15px;
 }
 
+.edit-picture-page {
+	background: url("city-restaurant-lunch-outside.jpg");
+	height: 855px;
+	padding-top: 15%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+}
+
 .edit-profile-form {
 	background-color: $main-gray-neutral;
 	@include rounded-corners(10px);
@@ -228,6 +239,11 @@ ui.inverted.segment.show {
 	position: relative;
 	padding: 10px 0 10px 0;
 	width: 30%;
+}
+
+#user_first_name {
+	left: 15px;
+	width: 200px;
 }
 
 
