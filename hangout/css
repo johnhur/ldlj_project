@@ -17,7 +17,8 @@ Backtrace:
 /Users/daphne_watson/.rvm/gems/ruby-2.2.1/bin/sass:23:in `load'
 /Users/daphne_watson/.rvm/gems/ruby-2.2.1/bin/sass:23:in `<main>'
 */
-body:before {
+/*body:before {
   white-space: pre;
   font-family: monospace;
   content: "Errno::ENOENT: No such file or directory @ rb_sysopen - scss"; }
+*/

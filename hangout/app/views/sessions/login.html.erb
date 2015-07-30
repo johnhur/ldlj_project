@@ -30,8 +30,12 @@
           <%= submit_tag "Log in", id:"submit-user" %>
         </p>
 
+
         <div class="signup-link">
           <%= link_to "Don't have an account? Sign up here", new_user_path %>
+        </div>
+        <div class="signup-link">
+          <%= link_to "Forgot Password?", new_reset_path %>
         </div>
         <% end %>
         <!-- end login form -->
@@ -40,9 +44,18 @@
   </div>
       <div class="ui inverted segment footer">
         <div class="ui inverted secondary menu">
+          <a class="active item image">
+            <%= image_tag("median-icon2.png") %>
+          </a>
+          <a class="active item">
+            Home
+          </a> 
           <a class="active item">
             About
-          </a>  
+          </a>
+          <a class="active item">
+            Contact
+          </a>   
         </div>
       </div> 
 </div>
@@ -63,3 +76,9 @@ console.log(randomImage);
 
 </script>
  -->
+
+ hidden field with latitude and longitude. sent when user hits submit..
+  - type: hidden, for input element.. 
+
+ when user hits button, calculate lat and lng, prevent default action of button.. 
+  - send 

@@ -9,10 +9,51 @@
 
 $(function() {
 
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
+  var map;
+  var infowindow = new google.maps.InfoWindow
+    // geolocation variables
+  var userLat;
+  var userLong;
+  var userLatLong;
+  var transitLayer;
+  var bikeLayer;
+  var trafficLayer;
+  var weather;
+  var mapLat = 37.768120;
+  var mapLong = -122.441875;
+  // yelp global variables
+  var userTerm;
+  var midLat;
+  var midLng;
+
+
   // because we can't use the .ready(function), here we are checking for a class
   // that was added to the maps users index page (which is where we want this code to run)
   // If the class we've called "index" is not on a page, then this code won't run (so map doesn't
   // try to load on every page, and geolocation doesn't try to ask user to allow it on every page.)
+   if ($(".get-location").length !== 0) {
+    
+    if (Modernizr.geolocation) {
+      
+      navigator.geolocation.getCurrentPosition(function(loc){
+        userLat = loc.coords.latitude;
+        userLong = loc.coords.longitude;
+        console.log(userLat + "," + userLong)
+
+        //onclick conditional to check if lat and long are populated.. for users 
+
+        $("#user_lat").val(userLat)
+        $("#user_lng").val(userLong)
+
+
+      }, resErr);
+    } 
+       
+   }
+
+
   if ($(".index").length !== 0) {
 
     renderHandlebars();
@@ -32,6 +73,8 @@ $(function() {
     var mapLong = -122.441875;
     // yelp global variables
     var userTerm;
+    var midLat;
+    var midLng;
 
 
     // ----------------------------- INITIALIZE MAP -----------------------------
@@ -73,22 +116,29 @@ $(function() {
       }
     }
 
-    function getLoc(location) {
-      // variables declared globally, see top of script
-      userLat = location.coords.latitude;
-      userLong = location.coords.longitude;
-      userLatLong = new google.maps.LatLng(userLat, userLong);
-      var marker = new google.maps.Marker({
-        position: userLatLong,
-        map: map,
-        title: "You Are Here!",
-        icon: 'usermarker.png'
-      });
-      weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
-      getWeather(weather);
-    }
+  function getLoc(location) {
+    // variables declared globally, see top of script
+    userLat = location.coords.latitude;
+    userLong = location.coords.longitude;
+    userLatLong = new google.maps.LatLng(userLat, userLong);
+    marker = new google.maps.Marker({
+      position: userLatLong,
+      map: map,
+      title: "You Are Here!",
+      icon: 'person.png'
+    });
 
-    function resErr(error) {
+    weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
+    getWeather(weather);
+
+    //we need to have a callback for the getMidpoint function here because we want to
+    // ensure that the userLatLong is passed into the getMidpoint function.
+    //  otherwise the variables will be undefined.
+    // This may be changed based on user addresses.
+    getMidpoint();
+  }
+
+  function resErr(error) {
       if (error.code == 1) {
         alert('Your privacy is respected! Your location has not been detected.');
       } else if (error.code == 2) {
@@ -125,7 +175,8 @@ $(function() {
       // getting the category the user filled in on the form
       // on the user index page
       userTerm = $(".user_term").val();
-      searchYelp(userLat, userLong, userTerm);
+      // searchYelp(userLat, userLong, userTerm);
+      searchYelp(midLat, midLng, userTerm);
     });
 
     function searchYelp(lat, lng, term) {
@@ -139,6 +190,7 @@ $(function() {
       }).done(function(data) {
         data['businesses'].forEach(function(business) {
           var placeName = business.name;
+          var placeRating = business.rating_img_url_small;
           var placeImg = business.image_url;
           var placeUrl = business.url;
           var placeLat = business.location.coordinate.latitude;
@@ -153,8 +205,10 @@ $(function() {
             icon: 'place.png'
           });
 
+          // Thanks to Dom for inspiration on styling these infowindows
+          // and closing previous open infowindow when another marker is clicked
           google.maps.event.addListener(marker, 'click', function() {
-            var content = '<h5>' + placeName + '</h5>' + '<a href=' + placeUrl + ' target="_blank"><img src=' + placeImg + '></a>';
+            var content = '<h5>' + placeName + '</h5>' + '<a href=' + placeUrl + ' target="_blank"><img src=' + placeImg + '></a><div><img src=' + placeRating + '></div>';
             infowindow.close();
             infowindow.setContent(content);
             infowindow.open(marker.get('map'), marker);
@@ -163,6 +217,35 @@ $(function() {
         });
       });
     }
+
+
+// ------------------------- GEOMETRIC MIDPOINT -------------------------------
+function getMidpoint() {
+  //example for midpoint
+  var smitten = new google.maps.LatLng(37.776381, -122.424260);
+  // console.log(marker.position)
+
+  mid = google.maps.geometry.spherical.interpolate(userLatLong, smitten, 0.5)
+
+  midLat = mid.A
+  midLng = mid.F
+  // lat is stored as A, lng is stored as F
+  console.log(mid.A)
+
+  marker2 = new google.maps.Marker({
+  position: smitten,
+  map: map,
+  title: "MidPoint",
+  icon: 'person.png'
+  });
+  mid_marker = new google.maps.Marker({
+  position: mid,
+  map: map,
+  title: "MidPoint",
+  icon: 'person.png'
+  });
+
+}
 
     // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
 
@@ -197,6 +280,38 @@ $(function() {
     initialize();
     checkForLoc();
 
+    // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
+
+    function calcRoute(orig, dest) {
+      var selectedMode = document.getElementById('mode').value;
+      var request = {
+        origin: orig,
+        destination: dest,
+        // Note that Javascript allows us to access the constant
+        // using square brackets and a string value as its
+        // "property."
+        travelMode: google.maps.TravelMode[selectedMode]
+      };
+      directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+        }
+      });
+    }
+
+    // ----------------------------- HANDLEBARS -----------------------------
+
+    // At its most basic, Handlebars is just a place to put your client-side HTML
+    // Handlebars makes sure it's clean and safe
+    // need the path to the hbs file here
+    function renderHandlebars() {
+      var html = HandlebarsTemplates['users/index'](); // place data in parens when you're sending data to hbs file
+      // Use an ID to ensure only one, we don't an array
+      $('#map').append(html);
+    }
+
+    initialize();
+    checkForLoc();
 
     // ----------------------------- TRANSIT LAYER OBJECT -----------------------------
     function showTransit() {
