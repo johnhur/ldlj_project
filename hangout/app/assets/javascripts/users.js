@@ -107,47 +107,6 @@ $(function() {
       getWeather(weather);
     }
 
-
-    // ----------------------------- GEOLOCATION -----------------------------
-
-    function checkForLoc() {
-      if (Modernizr.geolocation) {
-        navigator.geolocation.getCurrentPosition(getLoc, resErr);
-      } else {
-        alert('Your browser does not support geolocation');
-        weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
-      }
-    }
-
-    function getLoc(location) {
-      // variables declared globally, see top of script
-      userLat = location.coords.latitude;
-      userLong = location.coords.longitude;
-      userLatLong = new google.maps.LatLng(userLat, userLong);
-      var marker = new google.maps.Marker({
-        position: userLatLong,
-        map: map,
-        title: "You Are Here!",
-        icon: 'usermarker.png'
-      });
-      weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
-      getWeather(weather);
-
-      getMidpoint();
-    }
-
-    function resErr(error) {
-      if (error.code == 1) {
-        alert('Your privacy is respected! Your location has not been detected.');
-      } else if (error.code == 2) {
-        alert('Location Unavailable');
-      } else if (error.code == 3) {
-        alert('TimeOut');
-      }
-      weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
-      getWeather(weather);
-    }
-
     // ----------------------------- WEATHER LAYER OBJECT -----------------------------
     function getWeather(weather) {
       $.ajax({
