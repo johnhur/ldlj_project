@@ -1,10 +1,19 @@
 // wrap other $() operations on your page that depend on the DOM being ready
-// $(".users.new").ready(function(){   
-//   alert("HELLO")    
-// })      
+// $(".users.new").ready(function(){
+//   alert("HELLO")
+// })
+// $(".users.new").ready(function(){
+//   alert("HELLO")
+// })
 // another way to specify a page specific event, but this needs turbo-links to work, which is not the case for us.
 
 $(function() {
+
+  // because we can't use the .ready(function), here we are checking for a class
+  // that was added to the maps users index page (which is where we want this code to run)
+  // If the class we've called "index" is not on a page, then this code won't run (so map doesn't
+  // try to load on every page, and geolocation doesn't try to ask user to allow it on every page.)
+  if($(".index").length !== 0){
 
 	renderHandlebars();
   var directionsDisplay;
@@ -21,7 +30,7 @@ $(function() {
   var mapLat = 37.768120;
   var mapLong = -122.441875;
 
- 
+
 // ----------------------------- INITIALIZE MAP -----------------------------
 
   function initialize() {
@@ -116,7 +125,9 @@ $(function() {
   function searchYelp(lat, lng) {
     $.ajax({
       // url looks for 'results' action (see routes.rb)
-      url: '/results?lat=' + lat + '&long=' + lng,
+      // the lat and lng in the URL string can be any words, as long as the
+      // same words are used in the params in the places controller method
+      url: '/results?lat=' + lat + '&lng=' + lng,
       method: 'get',
       dataType: 'json'
     }).done(function(data) {
@@ -186,5 +197,5 @@ $(function() {
     showTraffic();
   });
 
-}); // closing tag for everything in this file
+}}); // closing tag for everything in this file
 
