@@ -21,6 +21,9 @@ class SessionsController < ApplicationController
   end
   
   def logout
+    
+    # current_user.lat = nil
+    # current_user.lng = nil
   	session[:user_id] = nil
   	flash[:notice] = "Logged out"
   	redirect_to login_path

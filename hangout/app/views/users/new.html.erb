@@ -1,4 +1,4 @@
-<div id="signup-larger">
+<div id="signup-larger" class="get-location">
 	<div class="signup-background-color">
 		<h1>
 			<div class="median-logo">
@@ -44,10 +44,10 @@
 			<div class="avatar-label">
 				<%= f.file_field :avatar %>
 			</div>
-
+			<%= f.hidden_field :lat %>
+			<%= f.hidden_field :lng %>
 			<div class="submit-button">
-				<%= f.submit
-				 a=[%>
+				<%= f.submit%>
 			</div>
 			
 			<div class="signup-link">

@@ -9,10 +9,51 @@
 
 $(function() {
 
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
+  var map;
+  var infowindow = new google.maps.InfoWindow
+    // geolocation variables
+  var userLat;
+  var userLong;
+  var userLatLong;
+  var transitLayer;
+  var bikeLayer;
+  var trafficLayer;
+  var weather;
+  var mapLat = 37.768120;
+  var mapLong = -122.441875;
+  // yelp global variables
+  var userTerm;
+  var midLat;
+  var midLng;
+
+
   // because we can't use the .ready(function), here we are checking for a class
   // that was added to the maps users index page (which is where we want this code to run)
   // If the class we've called "index" is not on a page, then this code won't run (so map doesn't
   // try to load on every page, and geolocation doesn't try to ask user to allow it on every page.)
+   if ($(".get-location").length !== 0) {
+    
+    if (Modernizr.geolocation) {
+      
+      navigator.geolocation.getCurrentPosition(function(loc){
+        userLat = loc.coords.latitude;
+        userLong = loc.coords.longitude;
+        console.log(userLat + "," + userLong)
+
+        //onclick conditional to check if lat and long are populated.. for users 
+
+        $("#user_lat").val(userLat)
+        $("#user_lng").val(userLong)
+
+
+      }, resErr);
+    } 
+       
+   }
+
+
   if ($(".index").length !== 0) {
 
     renderHandlebars();
@@ -32,6 +73,8 @@ $(function() {
     var mapLong = -122.441875;
     // yelp global variables
     var userTerm;
+    var midLat;
+    var midLng;
 
 
     // ----------------------------- INITIALIZE MAP -----------------------------
@@ -132,7 +175,8 @@ $(function() {
       // getting the category the user filled in on the form
       // on the user index page
       userTerm = $(".user_term").val();
-      searchYelp(userLat, userLong, userTerm);
+      // searchYelp(userLat, userLong, userTerm);
+      searchYelp(midLat, midLng, userTerm);
     });
 
     function searchYelp(lat, lng, term) {
@@ -181,7 +225,10 @@ function getMidpoint() {
   var smitten = new google.maps.LatLng(37.776381, -122.424260);
   // console.log(marker.position)
 
-  var mid = google.maps.geometry.spherical.interpolate(userLatLong, smitten, 0.5)
+  mid = google.maps.geometry.spherical.interpolate(userLatLong, smitten, 0.5)
+
+  midLat = mid.A
+  midLng = mid.F
   // lat is stored as A, lng is stored as F
   console.log(mid.A)
 
