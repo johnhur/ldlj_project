@@ -1,9 +1,12 @@
-<h1>Edit Your Profile</h1>
+
+<div class="edit-profile-form">
+<h1 class="show-h1">Edit Your Profile</h1>
 
 <%= form_for(@current_user) do |f| %>
 	<%= render partial: 'users/errors', locals:{instance:@current_user} %>
-	<div class="form-group">
-		<%= f.label :first_name %>
+	<div class="edit-form">
+	<div class="form-group first-name">
+		<%= f.label :first_name %><br>
 		<%= f.text_field :first_name %>
 	</div>
 
@@ -30,5 +33,7 @@
 	<div>
 		<%= f.submit %>
 	</div>
+</div>	
 
 <% end %>	
+</div>

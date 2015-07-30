@@ -180,10 +180,10 @@ body.users.show {
 }
 
 .show-profile-info {
-	background-color: white;
+	background-color: $main-gray-neutral;
 	@include rounded-corners(10px);
 
-	opacity: 1;
+	opacity: 0.9;
 	position: relative;
 	padding: 100px 0 100px 0;
 	// height: 70%;
@@ -203,6 +203,31 @@ li {
 
 .show-h1 {
 	color: $main-dark-blue;
+}
+
+ui.inverted.segment.show {
+	position: relative;
+	top: 60px;
+}
+
+// This code is for the edit page
+.edit-form {
+	text-align: center;
+}
+
+.form-group.first-name {
+	position: relative;
+	right: 15px;
+}
+
+.edit-profile-form {
+	background-color: $main-gray-neutral;
+	@include rounded-corners(10px);
+
+	opacity: 0.9;
+	position: relative;
+	padding: 10px 0 10px 0;
+	width: 30%;
 }
 
 
