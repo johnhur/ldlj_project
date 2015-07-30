@@ -150,7 +150,7 @@ $(function() {
             position: thisLatLong,
             map: map,
             title: placeName,
-            icon: 'sfmarker.png'
+            icon: 'place.png'
           });
 
           google.maps.event.addListener(marker, 'click', function() {

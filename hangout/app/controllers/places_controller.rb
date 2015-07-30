@@ -21,7 +21,7 @@ class PlacesController < ApplicationController
     	  # result_review = business.review_count
     	  # result_rating = business.rating
         end 
-    render json: "this is where the Yelp search results will be"
+    render json: new_search
   end
 
 end
