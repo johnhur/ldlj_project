@@ -7,10 +7,11 @@
 <% end %>
 
 <%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:q, "Search for a category:") %>
-  <%= text_field_tag(:q) %>
+  <%= label_tag(:q, "Search for a category:", ) %>
+  <%= text_field_tag(:q, nil, class:"user_term", autofocus: true) %>
   <%= submit_tag("Search") %>
 <% end %>
+
 
 <p>Business Name: <%= @res_name %></p>
 <p>Distance from you, in meters: <%= @res_dist %></p>
