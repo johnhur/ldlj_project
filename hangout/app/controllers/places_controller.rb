@@ -1,18 +1,18 @@
 class PlacesController < ApplicationController
 
-	def index 	 
+	def index
 	end
 
+  # search is on same page as results, so only need one method
   def results
-    # lat lng from user.js AJAX get request
+    # lat, lng, and term from user.js AJAX get request
     @lat = params[:lat]
     @long = params[:lng]
     term = params[:term]
-    yelp_params = { term: term, limit: 2}
+    yelp_params = { term: term, limit: 5}
     coordinates = { latitude: @lat, longitude: @long }
     new_search = Yelp.client.search_by_coordinates(coordinates, yelp_params)
-
-    render json: "this is where the Yelp search results will be"
+    render json: new_search
   end
 
 end

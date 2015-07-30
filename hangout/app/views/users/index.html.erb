@@ -7,7 +7,7 @@
 <% end %>
 
 <%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:q, "Search for a category:", ) %>
+  <%= label_tag("Search for a category:") %>
   <%= text_field_tag(:q, nil, class:"user_term", autofocus: true) %>
   <%= submit_tag("Search") %>
 <% end %>
