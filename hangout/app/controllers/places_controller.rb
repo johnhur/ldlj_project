@@ -9,7 +9,7 @@ class PlacesController < ApplicationController
     @lat = params[:lat]
     @long = params[:lng]
     term = params[:term]
-    yelp_params = { term: term, limit: 2, offset: 5, sort: 1}
+    yelp_params = { term: term, limit: 5, offset: 5, sort: 1}
     coordinates = { latitude: @lat, longitude: @long }
     new_search = Yelp.client.search_by_coordinates(coordinates, yelp_params)
     # TODO - refactor into a separate function
