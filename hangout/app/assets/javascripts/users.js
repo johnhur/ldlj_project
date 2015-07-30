@@ -77,14 +77,21 @@ $(function() {
     userLat = location.coords.latitude;
     userLong = location.coords.longitude;
     userLatLong = new google.maps.LatLng(userLat, userLong);
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
       position: userLatLong,
       map: map,
       title: "You Are Here!",
       icon: 'usermarker.png'
     });
+    
     weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
     getWeather(weather);
+
+    //we need to have a callback for the getMidpoint function here because we want to
+    // ensure that the userLatLong is passed into the getMidpoint function.
+    //  otherwise the variables will be undefined.
+    // This may be changed based on user addresses.
+    getMidpoint();
   }
 
   function resErr(error) {
@@ -138,6 +145,34 @@ $(function() {
     });
   }
 
+// ------------------------- GEOMETRIC MIDPOINT -------------------------------
+function getMidpoint() {
+  //example for midpoint
+  var smitten = new google.maps.LatLng(37.776381, -122.424260);
+  console.log(marker.position)
+
+  var mid = google.maps.geometry.spherical.interpolate(userLatLong, smitten, 0.5)
+  // lat is stored as A, lng is stored as F
+  console.log(mid.A)
+
+  marker2 = new google.maps.Marker({
+  position: smitten,
+  map: map,
+  title: "MidPoint",
+  icon: 'usermarker.png'
+  });
+  
+
+  mid_marker = new google.maps.Marker({
+  position: mid,
+  map: map,
+  title: "MidPoint",
+  icon: 'usermarker.png'
+  });
+ 
+}
+
+
 // ----------------------------- HANDLEBARS -----------------------------
 
   // At its most basic, Handlebars is just a place to put your client-side HTML
@@ -151,6 +186,7 @@ $(function() {
 
   initialize();
   checkForLoc();
+
 
 
 // ----------------------------- TRANSIT LAYER OBJECT -----------------------------
