@@ -46,4 +46,18 @@
 </div>
 </div>
 
+<script>
+  
+  var images = ["https://static.pexels.com/photos/5317/food-salad-restaurant-person.jpg", "https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg"];
+
+  var randomNum = Math.floor(Math.random() * images.length); 
+  console.log(randomNum);
+
+  var randomImage = images[randomNum];
+
+$("#larger").css("background", "url(" + randomImage + ")");
+
+console.log(randomImage);
+
+</script>
 

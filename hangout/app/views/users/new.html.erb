@@ -8,41 +8,41 @@
 
 <%= form_for @user, :html => { :multipart => true }  do |f| %>
 
-	<div class="label">
-	<%= f.file_field :avatar %>
-	</div>
-
 	<%= render partial: 'users/errors', locals:{instance:@user} %>
 	
 	<div class="form-group">
 		<div class="label">
-			<%= f.label :first_name %>
+			<%= f.label :first_name %><br>
+				</div>
 			<%= f.text_field :first_name %>
-		</div>
 	</div>
 
 	<div class="form-group">
 		<div class="label"></div>	
-		<%= f.label :email %>
+		<%= f.label :email %><br>
 		<%= f.text_field :email %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :img_url %>
+		<%= f.label :img_url %><br>
 		<%= f.text_field :img_url %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :address %>
+		<%= f.label :address %><br>
 		<%= f.text_field :address %>
 	</div>
 
 	<div class="form-group">
-		<%= f.label :password %>
+		<%= f.label :password %><br>
 		<%= f.password_field :password %>
 	</div>
 
-	<div>
+	<div class="avatar-label">
+	<%= f.file_field :avatar %>
+	</div>
+
+	<div class="submit-button">
 		<%= f.submit %>
 	</div>
 

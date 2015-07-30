@@ -13,6 +13,11 @@ $main-purple: #53455c;
 	-webkit-border-radius: $radius;
 }
 
+#email, #password {
+	border-radius: 5px;
+	width: 200px;
+}
+
 * {
 	margin: 0 auto;
 	text-align: center;

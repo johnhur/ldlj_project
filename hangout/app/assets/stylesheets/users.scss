@@ -1,3 +1,29 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$main-dark-blue: #394263;
+$main-gray-neutral: #e8e9fe;
+$main-turquoise: #20b6ad;
+$main-light-blue: #559adf;
+$main-purple: #53455c;
+
+* {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#user_first_name {
+	position: relative;
+	left: 2px;
+}
+
+.avatar-label {
+	left: 25px;
+	position: relative;
+	padding-top: 10px;
+}
+
+.submit-button {
+	position: relative;
+	padding-top: 10px;
+}
