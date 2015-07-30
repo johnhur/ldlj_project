@@ -128,7 +128,6 @@ $(function() {
       searchYelp(userLat, userLong, userTerm);
     });
 
-    // TODO: refactor into smaller functions
     function searchYelp(lat, lng, term) {
       $.ajax({
         // url looks for 'results' action (see routes.rb)
@@ -142,38 +141,24 @@ $(function() {
           var placeName = business.name;
           var placeImg = business.image_url;
           var placeUrl = business.url;
-          var address = encodeURIComponent(business.location.display_address.join(", "));
-          $.ajax({
-            url: 'http://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&bounds=37.5,-122.8|37.9,-122.2',
-            method: 'get',
-            dataType: 'json'
-          }).done(function(data) {
-            // Even if the geocoder returns no results (such as if the address doesn't exist)
-            // it still returns an empty results array, so checking to make sure data exists
-            if (data.results && data.results.length >= 1 &&
-              data.results[0].geometry && data.results[0].geometry.location) {
-              //Addresses are returned in the order of best to least matches
-              // location contains the geocoded lat,long value.
-              // For normal address lookups, this field is typically the most important
-              var placeLat = data.results[0].geometry.location.lat;
-              var placeLong = data.results[0].geometry.location.lng;
-              var thisLatLong = new google.maps.LatLng(placeLat, placeLong);
-              var marker = new google.maps.Marker({
-                animation: google.maps.Animation.DROP,
-                position: thisLatLong,
-                map: map,
-                title: placeName,
-                icon: 'sfmarker.png'
-              });
+          var placeLat = business.location.coordinate.latitude;
+          var placeLong = business.location.coordinate.longitude;
+          var thisLatLong = new google.maps.LatLng(placeLat, placeLong);
 
-              google.maps.event.addListener(marker, 'click', function() {
-                var content = '<h5>' + placeName + '</h5>' + '<a href=' + placeUrl + ' target="_blank"><img src=' + placeImg + '></a>';
-                infowindow.close();
-                infowindow.setContent(content);
-                infowindow.open(marker.get('map'), marker);
-                calcRoute(userLatLong, thisLatLong);
-              });
-            }
+          var marker = new google.maps.Marker({
+            animation: google.maps.Animation.DROP,
+            position: thisLatLong,
+            map: map,
+            title: placeName,
+            icon: 'sfmarker.png'
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+            var content = '<h5>' + placeName + '</h5>' + '<a href=' + placeUrl + ' target="_blank"><img src=' + placeImg + '></a>';
+            infowindow.close();
+            infowindow.setContent(content);
+            infowindow.open(marker.get('map'), marker);
+            calcRoute(userLatLong, thisLatLong);
           });
         });
       });
