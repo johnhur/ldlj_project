@@ -1,3 +1,73 @@
+
+<div id="map-index">
+	<div class="ui inverted segment">
+		
+		<a class="active item">
+			<%= image_tag("median-logo2.png") %>
+		</a>
+		
+		<a class="active item image">
+			<%= image_tag("median-icon2.png") %>
+		</a>
+		
+		<a class="active item">
+			Home
+		</a>
+		
+		<a class="active item">
+			Contact
+		</a>
+		
+		<a class="active item">
+			About
+		</a>	
+	
+		<a class="active item">
+			<h1>Welcome Back, <%= @current_user.first_name %>!</h1>
+		</a>
+
+	</div>
+
+<!-- testing available users -->
+	<% @users.each do |user| %>
+		<%= user.first_name %>
+	<% end %>
+
+
+	<div class="ui two column centered grid">
+		<div class="column first">
+	
+	<div class ="search-container">
+		
+		<form class="ui form">
+		
+		<%= form_tag("/search", method: "get") do %>
+  		
+  		<label>
+  			<%= label_tag(:q, "Search for a category:") %></label><br/>
+  			<%= text_field_tag(:q) %>
+  			<%= submit_tag("Search") %>
+		<% end %>
+
+	<form class="ui form">
+		<div class="field">
+		<p class="search-field">
+			<label>Business Name: <%= @res_name %></label>
+			<input type="text" name="business" placeholder="business name">
+  </div>
+		</p>
+		</div>
+		
+		<p class="search-field">Distance from you, in meters: <%= @res_dist %></p>
+		<p class="search-field">Business Address: <%= @res_addr %></p>
+	</div>		
+
+		</div>
+			<div class="column first">
+				<div id='map'></div>
+			</div>
+	</form>		
+</div>		
 <!-- The class="index" in the h1 tag below is needed (the users.js file is looking for it); please don't remove it -->
 <h1 class="index">Welcome To Median, <%= @current_user.first_name %>!</h1>
 
@@ -20,6 +90,7 @@
 <div class="ui grid">
 	<div id='map' class="eight column row"></div>
 </div>
+
 
 
 
