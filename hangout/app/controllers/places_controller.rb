@@ -11,6 +11,7 @@ class PlacesController < ApplicationController
     yelp_params = { term: term, limit: 2, offset: 5, sort: 1}
     coordinates = { latitude: @lat, longitude: @long }
     new_search = Yelp.client.search_by_coordinates(coordinates, yelp_params)
+    # TODO - refactor into a separate function
     new_search.businesses.each do |business|
     	  result_name = business.name
     	  result_address = business.location.address
@@ -19,7 +20,7 @@ class PlacesController < ApplicationController
     	  # result_review = business.review_count
     	  # result_rating = business.rating
         end 
-        
+
     render json: "this is where the Yelp search results will be"
   end
 
