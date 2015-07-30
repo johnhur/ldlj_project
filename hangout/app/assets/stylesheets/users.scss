@@ -1,3 +1,69 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$main-dark-blue: #394263;
+$main-gray-neutral: #e8e9fe;
+$main-turquoise: #20b6ad;
+$main-light-blue: #559adf;
+$main-purple: #53455c;
+
+@mixin rounded-corners($radius: 5px) {
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+}
+
+* {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#signup-larger {
+	background: url("skater-821502_1920.jpg") no-repeat center center fixed;
+	height: 8555px;
+	padding-top: 15%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+// .form-font {
+// 	color: white;
+// }
+
+#user_first_name {
+	position: relative;
+	left: 2px;
+	border-radius: 5px;
+  width: 200px;
+}
+
+#user_email, #user_img_url, #user_address, #user_password {
+	border-radius: 5px;
+  width: 200px;
+}
+
+.avatar-label {
+	left: 25px;
+	position: relative;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.signup-background-color {
+	background-color: $main-gray-neutral;
+	@include rounded-corners(10px);
+
+	opacity: 0.9;
+	position: relative;
+	padding: 10px 0 10px 0;
+	width: 30%;
+
+}
+
+#submit-button {
+	@include rounded-corners(10px);
+	position: relative;
+	padding-top: 20px;
+}
