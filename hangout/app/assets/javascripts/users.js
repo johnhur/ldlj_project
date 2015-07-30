@@ -189,13 +189,13 @@ function getMidpoint() {
   position: smitten,
   map: map,
   title: "MidPoint",
-  icon: 'usermarker.png'
+  icon: 'person.png'
   });
   mid_marker = new google.maps.Marker({
   position: mid,
   map: map,
   title: "MidPoint",
-  icon: 'usermarker.png'
+  icon: 'person.png'
   });
 
 }
