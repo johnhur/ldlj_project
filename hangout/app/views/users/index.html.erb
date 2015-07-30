@@ -3,7 +3,7 @@
 	<div class="ui inverted segment">
 		
 		<a class="active item">
-			<%= image_tag("median-logo3.png") %>
+			<%= image_tag("median-logo4.png") %>
 		</a>
 		<a class="active item image">
 			<%= image_tag("median-icon2.png") %>
@@ -19,31 +19,26 @@
 		</a>
 		<a class="active item">
 			<!-- The class="index" in the h1 tag below is needed (the users.js file is looking for it); please don't remove it -->
-			<h1 class="index">Welcome To Median, <%= @current_user.first_name %>!</h1>
+			<h1 class="index-greeting">Welcome Back, <%= @current_user.first_name %>!</h1>
 		</a>
 	</div>
 
 <!-- testing available users -->
 
 <%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:q, "Search for a category:", ) %>
+  <%= label_tag(:q1, "Search for a category:", ) %><br>
   <%= text_field_tag(:q, nil, class:"user_term", autofocus: true) %>
   <%= submit_tag("Search") %>
 <% end %>
 
 	<div class="ui two column centered grid">
 		<div class="column first">
-	
-	<div class ="search-container">
-		
-<!-- 		<form class="ui form"> -->
+			<div class ="search-container">
+			</div>
 		</div>
-		<!-- </form>	 -->
-
 	</div>		
-
-		</div>
-
+<!-- 		<form class="ui form"> -->
+		<!-- </form>	 -->
 		<div class="ui grid">
 			<div class="three column row">
 				<div class="two wide column"></div>
@@ -51,7 +46,6 @@
 				<div class="two wide column"></div>
 			</div>
 		</div>
-
 
 			<div class="column first">
 				<div id='map'></div>

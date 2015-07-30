@@ -17,8 +17,13 @@ $main-purple: #53455c;
 	-webkit-border-radius: $radius;
 }
 
+@mixin positioning {
+	position: relative;
+}
+
 #map-index, .body.users.index {
 	background-color: $main-gray-neutral;
+	height: 2000px;
 	margin: 0 auto;
 	text-align: center;
 	background-size: cover;
@@ -54,8 +59,16 @@ p.search-field {
 	padding-top: 5px;
 }
 
-.q {
+#q1 {
+	padding-bottom: 1em;
+	position: relative;
+}
+
+#q {
 	width: 200px;
+	@include rounded-corners(5px);
+	// padding-top: 1em;
+	// position: relative;
 }
 #transit, #bike, #traffic {
 	background-color: #559adf;
@@ -169,6 +182,11 @@ div.gymnoprint {
 // 	left: 200px;
 // }
 
+.index-greeting {
+	position: relative;
+	right: 40px;
+}
+
 // This code is for the user show page
 
 body.users.show {
@@ -249,5 +267,49 @@ ui.inverted.segment.show {
 	width: 200px;
 }
 
+// This code is for the show page
+
+.header-container {
+	float: left;
+}
+
+.ui.inverted.segment.show {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100px;
+}	
+
+.show-profile-info {
+	text-align: center;
+}
+
+a, .h1.show-h1 {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#user-profile-info {
+	text-align: center;
+}
+
+ul {
+	padding-left: 0;
+}
+
+.logo-item {
+	float: left;
+	// position: relative;
+	width: 20px;
+}
+
+.img_preview {
+	width: 30px;
+	margin: 10px;
+}
+// .item {
+// 	padding-right: 10px;
+// }
 
 
