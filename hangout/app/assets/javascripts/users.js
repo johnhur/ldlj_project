@@ -73,22 +73,29 @@ $(function() {
       }
     }
 
-    function getLoc(location) {
-      // variables declared globally, see top of script
-      userLat = location.coords.latitude;
-      userLong = location.coords.longitude;
-      userLatLong = new google.maps.LatLng(userLat, userLong);
-      var marker = new google.maps.Marker({
-        position: userLatLong,
-        map: map,
-        title: "You Are Here!",
-        icon: 'person.png'
-      });
-      weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
-      getWeather(weather);
-    }
+  function getLoc(location) {
+    // variables declared globally, see top of script
+    userLat = location.coords.latitude;
+    userLong = location.coords.longitude;
+    userLatLong = new google.maps.LatLng(userLat, userLong);
+    marker = new google.maps.Marker({
+      position: userLatLong,
+      map: map,
+      title: "You Are Here!",
+      icon: 'person.png'
+    });
 
-    function resErr(error) {
+    weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
+    getWeather(weather);
+
+    //we need to have a callback for the getMidpoint function here because we want to
+    // ensure that the userLatLong is passed into the getMidpoint function.
+    //  otherwise the variables will be undefined.
+    // This may be changed based on user addresses.
+    getMidpoint();
+  }
+
+  function resErr(error) {
       if (error.code == 1) {
         alert('Your privacy is respected! Your location has not been detected.');
       } else if (error.code == 2) {
@@ -167,6 +174,32 @@ $(function() {
       });
     }
 
+
+// ------------------------- GEOMETRIC MIDPOINT -------------------------------
+function getMidpoint() {
+  //example for midpoint
+  var smitten = new google.maps.LatLng(37.776381, -122.424260);
+  // console.log(marker.position)
+
+  var mid = google.maps.geometry.spherical.interpolate(userLatLong, smitten, 0.5)
+  // lat is stored as A, lng is stored as F
+  console.log(mid.A)
+
+  marker2 = new google.maps.Marker({
+  position: smitten,
+  map: map,
+  title: "MidPoint",
+  icon: 'usermarker.png'
+  });
+  mid_marker = new google.maps.Marker({
+  position: mid,
+  map: map,
+  title: "MidPoint",
+  icon: 'usermarker.png'
+  });
+
+}
+
     // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
 
     function calcRoute(orig, dest) {
@@ -200,6 +233,38 @@ $(function() {
     initialize();
     checkForLoc();
 
+    // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
+
+    function calcRoute(orig, dest) {
+      var selectedMode = document.getElementById('mode').value;
+      var request = {
+        origin: orig,
+        destination: dest,
+        // Note that Javascript allows us to access the constant
+        // using square brackets and a string value as its
+        // "property."
+        travelMode: google.maps.TravelMode[selectedMode]
+      };
+      directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+        }
+      });
+    }
+
+    // ----------------------------- HANDLEBARS -----------------------------
+
+    // At its most basic, Handlebars is just a place to put your client-side HTML
+    // Handlebars makes sure it's clean and safe
+    // need the path to the hbs file here
+    function renderHandlebars() {
+      var html = HandlebarsTemplates['users/index'](); // place data in parens when you're sending data to hbs file
+      // Use an ID to ensure only one, we don't an array
+      $('#map').append(html);
+    }
+
+    initialize();
+    checkForLoc();
 
     // ----------------------------- TRANSIT LAYER OBJECT -----------------------------
     function showTransit() {
