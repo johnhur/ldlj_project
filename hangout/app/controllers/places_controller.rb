@@ -15,13 +15,16 @@ class PlacesController < ApplicationController
     # TODO - refactor into a separate function
     new_search.businesses.each do |business|
     	  result_name = business.name
+          result_distance = business.distance
     	  result_address = business.location.address
     	  result_lat = business.location.coordinate.latitude
     	  result_long = business.location.coordinate.longitude
     	  # result_review = business.review_count
     	  # result_rating = business.rating
+        binding.pry
         end 
     render json: new_search
+    
   end
 
 end
