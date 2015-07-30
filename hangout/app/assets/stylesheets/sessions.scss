@@ -25,7 +25,7 @@ $main-purple: #53455c;
 
 #larger {
 	background: url("restaurant-690569_1280.jpg") no-repeat center center fixed;
-	height: 855px;
+	height: 2000px;
 	padding-top: 15%;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -104,6 +104,10 @@ img {
 	// margin-top: -150px;
 	// position: relative;
 
+}
+
+.logo-class, .image-class {
+	padding-right: 10px;
 }
 
 .test {

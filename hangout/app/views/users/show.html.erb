@@ -1,12 +1,26 @@
 <body class="show-body">
 
+	<div class="header-container">
 	<div class="ui inverted segment show">
-    <div class="ui inverted secondary menu">
+		    <div class="ui inverted secondary menu">
+		    <a class="logo-item">
+			<%= image_tag("median-logo4.png") %>
+			</a>
+			<a class="item">
+			<%= image_tag("median-icon2.png") %>
+				</a>
+      <a class="active item">
+        Home
+      </a>
       <a class="active item">
         About
+      </a>
+      <a class="active item">
+        Contact
       </a>  
     </div>
-  </div> 
+  </div>
+</div>   
 	
 	<div class="show-profile-info">
 		<h1 class="show-h1">Hello, <%= @current_user.first_name %>!</h1>
@@ -15,7 +29,7 @@
 		<%= image_url @current_user.avatar.url(:medium) %>
 		<%= image_url @current_user.avatar.url(:thumb) %>
 
-		<ul>
+		<ul id="user-profile-info">
 			<li>
 				<img src="<%= @current_user.img_url %>">
 			</li>
