@@ -107,6 +107,47 @@ $(function() {
       getWeather(weather);
     }
 
+
+    // ----------------------------- GEOLOCATION -----------------------------
+
+    function checkForLoc() {
+      if (Modernizr.geolocation) {
+        navigator.geolocation.getCurrentPosition(getLoc, resErr);
+      } else {
+        alert('Your browser does not support geolocation');
+        weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
+      }
+    }
+
+    function getLoc(location) {
+      // variables declared globally, see top of script
+      userLat = location.coords.latitude;
+      userLong = location.coords.longitude;
+      userLatLong = new google.maps.LatLng(userLat, userLong);
+      var marker = new google.maps.Marker({
+        position: userLatLong,
+        map: map,
+        title: "You Are Here!",
+        icon: 'usermarker.png'
+      });
+      weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + userLat + ',' + userLong + '.json';
+      getWeather(weather);
+
+      getMidpoint();
+    }
+
+    function resErr(error) {
+      if (error.code == 1) {
+        alert('Your privacy is respected! Your location has not been detected.');
+      } else if (error.code == 2) {
+        alert('Location Unavailable');
+      } else if (error.code == 3) {
+        alert('TimeOut');
+      }
+      weather = 'https://api.wunderground.com/api/0fd9bd78fc2f4356/geolookup/conditions/q/' + mapLat + ',' + mapLong + '.json';
+      getWeather(weather);
+    }
+
     // ----------------------------- WEATHER LAYER OBJECT -----------------------------
     function getWeather(weather) {
       $.ajax({
@@ -176,7 +217,7 @@ $(function() {
 function getMidpoint() {
   //example for midpoint
   var smitten = new google.maps.LatLng(37.776381, -122.424260);
-  console.log(marker.position)
+  // console.log(marker.position)
 
   var mid = google.maps.geometry.spherical.interpolate(userLatLong, smitten, 0.5)
   // lat is stored as A, lng is stored as F
@@ -189,7 +230,6 @@ function getMidpoint() {
   icon: 'usermarker.png'
   });
   
-
   mid_marker = new google.maps.Marker({
   position: mid,
   map: map,
@@ -198,6 +238,39 @@ function getMidpoint() {
   });
  
 }
+
+    // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
+
+    function calcRoute(orig, dest) {
+      var selectedMode = document.getElementById('mode').value;
+      var request = {
+        origin: orig,
+        destination: dest,
+        // Note that Javascript allows us to access the constant
+        // using square brackets and a string value as its
+        // "property."
+        travelMode: google.maps.TravelMode[selectedMode]
+      };
+      directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+        }
+      });
+    }
+
+    // ----------------------------- HANDLEBARS -----------------------------
+
+    // At its most basic, Handlebars is just a place to put your client-side HTML
+    // Handlebars makes sure it's clean and safe
+    // need the path to the hbs file here
+    function renderHandlebars() {
+      var html = HandlebarsTemplates['users/index'](); // place data in parens when you're sending data to hbs file
+      // Use an ID to ensure only one, we don't an array
+      $('#map').append(html);
+    }
+
+    initialize();
+    checkForLoc();
 
     // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
 
