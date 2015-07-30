@@ -24,9 +24,6 @@
 	</div>
 
 <!-- testing available users -->
-	<% @users.each do |user| %>
-		<%= user.first_name %>
-	<% end %>
 
 <%= form_tag("/search", method: "get") do %>
   <%= label_tag(:q1, "Search for a category:", ) %><br>

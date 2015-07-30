@@ -73,6 +73,15 @@ h1 {
 	position: relative;
 }
 
+.first-label {
+	padding-left: 0;
+	right: 12px;
+}
+
+.form-font {
+	left: 4px;
+}
+
 #submit-user {
 	margin-top: 20px;
 	@include rounded-corners(5px);

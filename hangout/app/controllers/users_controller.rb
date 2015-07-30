@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.create(user_params)
+    puts params
   		if @user.save
         session[:user_id] = @user.id
   			redirect_to users_path, flash: {success: "#{@user.first_name} created"}
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     flash[:notice] = "#{@current_user.first_name} has been deleted!"
     redirect_to login_path
+    
 
   end
 
@@ -55,7 +57,9 @@ class UsersController < ApplicationController
   		:img_url,
   		:address,
   		:password,
-      :password_reset_token
+      :password_reset_token,
+      :lat,
+      :lng
   		)
   end	
   # We don't want other users to edit another user's info or favorites. 
