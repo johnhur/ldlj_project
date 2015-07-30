@@ -21,7 +21,6 @@ class PlacesController < ApplicationController
     	  result_long = business.location.coordinate.longitude
     	  # result_review = business.review_count
     	  # result_rating = business.rating
-        binding.pry
         end 
     render json: new_search
     
