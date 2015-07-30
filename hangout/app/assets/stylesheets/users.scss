@@ -1,6 +1,10 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+// This code below is for the signup page
 $main-dark-blue: #394263;
 $main-gray-neutral: #e8e9fe;
 $main-turquoise: #20b6ad;
@@ -13,9 +17,57 @@ $main-purple: #53455c;
 	-webkit-border-radius: $radius;
 }
 
-* {
+#map-index, .body.users.index {
+	background-color: $main-gray-neutral;
 	margin: 0 auto;
 	text-align: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover; 
+}
+
+div.ui.inverted.segment {
+	background-color: $main-dark-blue;
+	text-align: justify;
+}
+
+a.active.item {
+	color: white;
+	padding-right: 10px; 
+}
+
+img {
+	height: 25px;
+
+}
+
+p.search-field {
+	position: relative;
+	padding-top: 5px;
+}
+
+.q {
+	width: 200px;
+}
+#transit, #bike, #traffic {
+	background-color: #559adf;
+	border-radius: 5px;
+	color: white;
+}
+
+.col-md-2.h5 {
+	position: relative;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+
+.col-md-2 {
+	background-color: $main-dark-blue;
+}
+
+#forecast, .col-md-8 {
+	display: none;
 }
 
 #signup-larger {
@@ -67,3 +119,28 @@ $main-purple: #53455c;
 	position: relative;
 	padding-top: 20px;
 }
+
+.first {
+	position: relative;
+	padding-right: 20px;
+}
+
+// This code below is for the map index page
+
+// .search-container {
+// 	float: left;
+// 	position: relative;
+// 	top: 30px;
+// }
+
+// .search-field {
+// 	left: 15px;
+// 	position: relative;
+// 	text-align: justify;
+// }
+
+// .ui.grid {
+// 	// float: right;
+// 	position: relative;
+// 	left: 200px;
+// }

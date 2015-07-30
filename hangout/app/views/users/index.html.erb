@@ -1,23 +1,56 @@
-<h1>Welcome To Median, <%= @current_user.first_name %>!</h1>
+<div id="map-index">
+	<div class="ui inverted segment">
+		
+		<a class="active item">
+			<%= image_tag("median-logo2.png") %>
+		</a>
+		
+		<a class="active item image">
+			<%= image_tag("median-icon2.png") %>
+		</a>
+		
+		<a class="active item">
+			Home
+		</a>
+		
+		<a class="active item">
+			Contact
+		</a>
+		
+		<a class="active item">
+			About
+		</a>	
+	
+	</div>
+
+	<h1>Welcome Back, <%= @current_user.first_name %>!</h1>
 
 <!-- testing available users -->
-<% @users.each do |user| %>
-	<%= user.first_name %>
-<% end %>
+	<% @users.each do |user| %>
+		<%= user.first_name %>
+	<% end %>
 
-<%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:q, "Search for a category:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
-<% end %>
 
-<p>Business Name: <%= @res_name %></p>
-<p>Distance from you, in meters: <%= @res_dist %></p>
-<p>Business Address: <%= @res_addr %></p>
+	<div class="ui two column centered grid">
+		<div class="column first">
+	
+	<div class ="search-container">
+		<%= form_tag("/search", method: "get") do %>
+  		<%= label_tag(:q, "Search for a category:") %><br/>
+  		<%= text_field_tag(:q) %>
+  		<%= submit_tag("Search") %>
+		<% end %>
 
-<div class="ui grid">
-	<div id='map' class="eight column row"></div>
-</div>
+		<p class="search-field">Business Name: <%= @res_name %></p>
+		<p class="search-field">Distance from you, in meters: <%= @res_dist %></p>
+		<p class="search-field">Business Address: <%= @res_addr %></p>
+	</div>		
+
+		</div>
+			<div class="column first">
+				<div id='map'></div>
+			</div>
+</div>		
 
 
 
