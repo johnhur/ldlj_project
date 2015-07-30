@@ -57,26 +57,7 @@ $(function() {
   if ($(".index").length !== 0) {
 
     renderHandlebars();
-    var directionsDisplay;
-    var directionsService = new google.maps.DirectionsService();
-    var map;
-    var infowindow = new google.maps.InfoWindow
-      // geolocation variables
-    var userLat;
-    var userLong;
-    var userLatLong;
-    var transitLayer;
-    var bikeLayer;
-    var trafficLayer;
-    var weather;
-    var mapLat = 37.768120;
-    var mapLong = -122.441875;
-    // yelp global variables
-    var userTerm;
-    var midLat;
-    var midLng;
-
-
+ 
     // ----------------------------- INITIALIZE MAP -----------------------------
 
     function initialize() {
@@ -230,7 +211,7 @@ function getMidpoint() {
   midLat = mid.A
   midLng = mid.F
   // lat is stored as A, lng is stored as F
-  console.log(mid.A)
+  // console.log(mid.A)
 
   marker2 = new google.maps.Marker({
   position: smitten,

@@ -1,4 +1,4 @@
-<div id="larger">    
+<div id="larger" class="get-location">    
 <!-- <div id="desktop-container"> -->
   <!-- <div class="login-container"> -->
     <div class="login-background-color">
@@ -18,15 +18,15 @@
           </div>
           
           <%= text_field_tag :email, params[:email], autofocus: true, class:"form-control" %>
-
-
       
         <div class="form-group">
           <div class="label":><%= label_tag :password, nil, class:"control-label" %></div>
             <%= password_field_tag :password, params[:password], class:"form-control" %>
         </div>
-
+        
         <p>
+        <%= hidden_field_tag 'user_lat' %>
+        <%= hidden_field_tag 'user_lng' %>
           <%= submit_tag "Log in", id:"submit-user" %>
         </p>
 
@@ -44,9 +44,14 @@
   </div>
       <div class="ui inverted segment footer">
         <div class="ui inverted secondary menu">
-          <a class="active item image">
+       <!--    <a class="active item image"> -->
+          <p class="logo-class">  
+            <%= image_tag("median-logo4.png") %>
+          </p><br>
+          <p class="image-class">  
             <%= image_tag("median-icon2.png") %>
-          </a>
+          </p>
+          <!-- </a> -->
           <a class="active item">
             Home
           </a> 

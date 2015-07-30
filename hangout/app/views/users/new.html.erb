@@ -11,7 +11,7 @@
 		<%= form_for @user, :html => { :multipart => true }  do |f| %>
 		<%= render partial: 'users/errors', locals:{instance:@user} %>
 	
-			<div class="form-group">
+			<div class="form-group first-label">
 				<div class="label">
 					<div class="form-font">
 						<%= f.label :first_name %><br>
@@ -47,7 +47,7 @@
 			<%= f.hidden_field :lat %>
 			<%= f.hidden_field :lng %>
 			<div class="submit-button">
-				<%= f.submit%>
+				<%= f.submit %>
 			</div>
 			
 			<div class="signup-link">
@@ -58,6 +58,12 @@
 
 	<div class="ui inverted segment footer">
       <div class="ui inverted secondary menu">
+      	<a class="active item">
+					<%= image_tag("median-logo4.png") %>
+				 </a>
+				<a class="active item image">
+					<%= image_tag("median-icon2.png") %>
+				</a>
       	 <a class="active item">
            Home
          </a>
