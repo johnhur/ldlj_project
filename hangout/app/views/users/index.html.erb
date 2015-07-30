@@ -1,48 +1,19 @@
-
 <div id="map-index">
-	<div class="ui inverted segment">
-		
-		<a class="active item">
-			<%= image_tag("median-logo3.png") %>
-		</a>
-		<a class="active item image">
-			<%= image_tag("median-icon2.png") %>
-		</a>
-		<a class="active item">
-			Home
-		</a>
-		<a class="active item">
-			Contact
-		</a>
-		<a class="active item">
-			About
-		</a>
-		<a class="active item">
-			<!-- The class="index" in the h1 tag below is needed (the users.js file is looking for it); please don't remove it -->
-			<h1 class="index">Welcome To Median, <%= @current_user.first_name %>!</h1>
-		</a>
-	</div>
 
-<!-- testing available users -->
-
-<%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:q, "Search for a category:", ) %>
-  <%= text_field_tag(:q, nil, class:"user_term", autofocus: true) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<!-- The class="index" in the h1 tag below is needed (the users.js file is looking for it); please don't remove it -->
+<h3 class="index"></h3>
 
 	<div class="ui two column centered grid">
 		<div class="column first">
-	
-	<div class ="search-container">
-		
-<!-- 		<form class="ui form"> -->
-		</div>
-		<!-- </form>	 -->
-
-	</div>		
-
-		</div>
+		  <div class ="search-container">
+		    <%= form_tag("/search", method: "get") do %>
+		      <%= label_tag(:q, "Search for a category:", ) %>
+		      <%= text_field_tag(:q, nil, class:"user_term", autofocus: true) %>
+		      <%= submit_tag("Search") %>
+		    <% end %>
+		  </div>
+	  </div>		
+	</div>
 
 		<div class="ui grid">
 			<div class="three column row">
@@ -52,10 +23,10 @@
 			</div>
 		</div>
 
-
 			<div class="column first">
 				<div id='map'></div>
 			</div>	
+			
 </div>		
 
 <!-- <div class="ui grid">
