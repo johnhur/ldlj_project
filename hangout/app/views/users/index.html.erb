@@ -1,3 +1,4 @@
+
 <div id="map-index">
 	<div class="ui inverted segment">
 		
@@ -67,6 +68,30 @@
 			</div>
 	</form>		
 </div>		
+=======
+<!-- The class="index" in the h1 tag below is needed (the users.js file is looking for it); please don't remove it -->
+<h1 class="index">Welcome To Median, <%= @current_user.first_name %>!</h1>
+
+<!-- testing available users -->
+<% @users.each do |user| %>
+	<%= user.first_name %>
+<% end %>
+
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "Search for a category:", ) %>
+  <%= text_field_tag(:q, nil, class:"user_term", autofocus: true) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+<p>Business Name: <%= @res_name %></p>
+<p>Distance from you, in meters: <%= @res_dist %></p>
+<p>Business Address: <%= @res_addr %></p>
+
+<div class="ui grid">
+	<div id='map' class="eight column row"></div>
+</div>
+
 
 
 
