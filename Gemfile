@@ -28,13 +28,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'yelp'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'rails_12factor', :group => :production
 gem 'puma'
-gem 'dotenv-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -42,7 +41,7 @@ gem 'dotenv-rails'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-
+  gem 'yelp'
   gem 'dotenv-rails'
 	gem 'pry-rails'
 	gem 'better_errors'
