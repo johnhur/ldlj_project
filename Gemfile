@@ -33,7 +33,6 @@ gem 'yelp'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'rails_12factor', :group => :production
-gem 'puma'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -42,7 +41,6 @@ gem 'puma'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'yelp'
   gem 'dotenv-rails'
 	gem 'pry-rails'
 	gem 'better_errors'
