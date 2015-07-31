@@ -7,7 +7,7 @@
 		<div class="column first">
 		  <div class ="search-container">
 		    <%= form_tag("/search", method: "get") do %>
-		      <%= label_tag(:q, "Search for a category:", ) %>
+		      <%= label_tag(:q, "Search for a category:", ) %><br>
 		      <%= text_field_tag(:q, nil, class:"user_term", autofocus: true) %>
 		      <%= submit_tag("Search") %>
 		    <% end %>
