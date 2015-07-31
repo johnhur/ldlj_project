@@ -281,6 +281,10 @@ ui.inverted.segment.show {
 	height: 100px;
 }	
 
+.ui.inverted.secondary.menu {
+	
+}
+
 .show-profile-info {
 	text-align: center;
 }
@@ -307,6 +311,11 @@ ul {
 .img_preview {
 	width: 30px;
 	margin: 10px;
+}
+
+.avatar{
+	height: 150px;
+	@include rounded-corners(10px);
 }
 // .item {
 // 	padding-right: 10px;

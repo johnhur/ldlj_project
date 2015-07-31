@@ -66,9 +66,9 @@
 </div>
 </div>
 
-<!-- <script>
+<script>
   
-  var images = ["https://static.pexels.com/photos/5317/food-salad-restaurant-person.jpg", "https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg"];
+  var images = ["/assets/restaurant-690569_1280.jpg", "https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg", "/assets/restaurant-690569_1280.jpg"];
 
   var randomNum = Math.floor(Math.random() * images.length); 
   console.log(randomNum);
@@ -76,14 +76,15 @@
   var randomImage = images[randomNum];
 
 $("#larger").css("background", "url(" + randomImage + ")");
+$("#larger").css("background-size", "cover", "background-repeat", "no-repeat", "width", "100%");
 
 console.log(randomImage);
 
 </script>
- -->
 
+<!-- 
  hidden field with latitude and longitude. sent when user hits submit..
   - type: hidden, for input element.. 
 
  when user hits button, calculate lat and lng, prevent default action of button.. 
-  - send 
+  - send  -->
