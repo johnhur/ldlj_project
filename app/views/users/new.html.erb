@@ -58,15 +58,6 @@
 
 	<div class="ui inverted segment footer">
       <div class="ui inverted secondary menu">
-      	<a class="active item">
-					<%= image_tag("median-logo4.png") %>
-				 </a>
-				<a class="active item image">
-					<%= image_tag("median-icon2.png") %>
-				</a>
-      	 <a class="active item">
-           Home
-         </a>
          <a class="active item">
            About
          </a> 
@@ -82,18 +73,19 @@
 
  <script>
   
-  var imagestwo = ["/assets/sports-731506_1920.jpg", "/assets/skater-821502_1920.jpg", "/assets/coffee-desk-notes-workspace.jpg", "/assets/stairs-man-person-walking.jpg"];
+  var imagestwo = ["/assets/sports-731506_1920.jpg", "/assets/black-and-white-party-music-club.jpg", "/assets/food-salad-restaurant-person.jpg", "/assets/people-woman-coffee-meeting.jpg"];
 
   var randomNum = Math.floor(Math.random() * imagestwo.length); 
   console.log(randomNum);
 
   var randomImage = imagestwo[randomNum];
 
-$("#larger").css("background", "url(" + randomImage + ")");
-$("#larger").css("background-size", "cover");
-$("#larger").css("background-repeat", "no-repeat"); 
-$("#larger").css("width", "100%");
-$("#larger").css("height", "");
+$("#signup-larger").css("background", "url(" + randomImage + ")");
+$("#signup-larger").css("background-size", "cover");
+$("#signup-larger").css("background-repeat", "no-repeat"); 
+$("#signup-larger").css("width", "100%");
+$("#signup-larger").css("height", "");
+$("#signup-larger").css("background-size", "contain");
 
 console.log(randomImage);
 
