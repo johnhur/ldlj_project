@@ -12,4 +12,5 @@
 !/log/.keep
 /tmp
 /config/secrets.yml
-../.DS_Store
+config/.DS_Store
+.DS_Store
