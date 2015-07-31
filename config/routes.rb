@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
 
-
-
   root 'sessions#login'
   get '/login', to: "sessions#login", as: 'login'
   post '/login', to: "sessions#attempt_login"
   delete '/logout', to: "sessions#logout", as: "logout"
 
   # password reset routes
-  resources :resets, only: [:new, :edit, :create, :update] 
+  resources :resets, only: [:new, :edit, :create, :update]
 
 	# root 'users#index'
 
@@ -19,11 +17,19 @@ Rails.application.routes.draw do
   # the AJAX get request from the user.js file is looking for
   # the results action here
   get '/results', to: 'places#results'
+  get '/friends', to: 'users#friends'
 end
 
 # Prefix Verb   URI Pattern                Controller#Action
-#       root GET    /                          places#index
-#     search GET    /search(.:format)          places#search
+#       root GET    /                          sessions#login
+#      login GET    /login(.:format)           sessions#login
+#            POST   /login(.:format)           sessions#attempt_login
+#     logout DELETE /logout(.:format)          sessions#logout
+#     resets POST   /resets(.:format)          resets#create
+#  new_reset GET    /resets/new(.:format)      resets#new
+# edit_reset GET    /resets/:id/edit(.:format) resets#edit
+#      reset PATCH  /resets/:id(.:format)      resets#update
+#            PUT    /resets/:id(.:format)      resets#update
 #      users GET    /users(.:format)           users#index
 #            POST   /users(.:format)           users#create
 #   new_user GET    /users/new(.:format)       users#new
@@ -40,3 +46,6 @@ end
 #            PATCH  /places/:id(.:format)      places#update
 #            PUT    /places/:id(.:format)      places#update
 #            DELETE /places/:id(.:format)      places#destroy
+#     search GET    /search(.:format)          places#search
+#    results GET    /results(.:format)         places#results
+#    friends GET    /friends(.:format)         users#friends

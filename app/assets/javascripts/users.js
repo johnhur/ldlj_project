@@ -34,30 +34,28 @@ $(function() {
   // If the class we've called "index" is not on a page, then this code won't run (so map doesn't
   // try to load on every page, and geolocation doesn't try to ask user to allow it on every page.)
    if ($(".get-location").length !== 0) {
-    
+
     if (Modernizr.geolocation) {
-      
+
       navigator.geolocation.getCurrentPosition(function(loc){
         userLat = loc.coords.latitude;
         userLong = loc.coords.longitude;
         console.log(userLat + "," + userLong)
 
-        //onclick conditional to check if lat and long are populated.. for users 
+        //onclick conditional to check if lat and long are populated.. for users
 
         $("#user_lat").val(userLat)
         $("#user_lng").val(userLong)
 
-
       }, resErr);
-    } 
-       
+    }
    }
 
 
   if ($(".index").length !== 0) {
 
     renderHandlebars();
- 
+
     // ----------------------------- INITIALIZE MAP -----------------------------
 
     function initialize() {
@@ -148,6 +146,35 @@ $(function() {
       });
     }
 
+    // ---------------------------- FIND LOGGED IN USERS --------------------------
+    $("#friends").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+          // url looks for 'friends' action (see routes.rb)
+          url: '/friends',
+          method: 'get',
+          dataType: 'json'
+        }).done(function(data) {
+          console.log(data)
+          data.forEach(function(friend) {
+            var friendName = friend.first_name;
+            var friendLat = friend.lat;
+            var friendLng = friend.lng;
+            var thisLatLong = new google.maps.LatLng(friendLat, friendLng);
+            var marker = new google.maps.Marker({
+              animation: google.maps.Animation.DROP,
+              position: thisLatLong,
+              map: map,
+              title: friendName,
+              icon: 'person.png'
+            });
+          });
+          var html = HandlebarsTemplates['users/friends'](data);
+            // Use an ID to ensure only one, we don't want an array
+            $('#show').append(html);
+        });
+      });
+
     // ----------------------------- SEARCH YELP -----------------------------
     // click search & call searchYelp function with geolocation global variables
     // must select the search button only
@@ -201,32 +228,40 @@ $(function() {
 
 
 // ------------------------- GEOMETRIC MIDPOINT -------------------------------
-function getMidpoint() {
-  //example for midpoint
-  var smitten = new google.maps.LatLng(37.776381, -122.424260);
-  // console.log(marker.position)
-
-  mid = google.maps.geometry.spherical.interpolate(userLatLong, smitten, 0.5)
-
-  midLat = mid.A
-  midLng = mid.F
-  // lat is stored as A, lng is stored as F
-  // console.log(mid.A)
-
-  marker2 = new google.maps.Marker({
-  position: smitten,
-  map: map,
-  title: "MidPoint",
-  icon: 'person.png'
-  });
-  mid_marker = new google.maps.Marker({
-  position: mid,
-  map: map,
-  title: "MidPoint",
-  icon: 'person.png'
+// Since class is added dynamically, need to use event delegation to register event handler
+  $(document).on('click', ".meet", function(e) {
+    e.preventDefault();
+    var chosenLat = $('input:hidden[name=lat]').val();
+    var chosenLng = $('input:hidden[name=lng]').val();
+    getMidpoint(chosenLat, chosenLng);
   });
 
-}
+  function getMidpoint(lat, lng) {
+    //example for midpoint
+    var friend = new google.maps.LatLng(lat, lng);
+    // console.log(marker.position)
+
+    mid = google.maps.geometry.spherical.interpolate(userLatLong, friend, 0.5)
+
+    midLat = mid.A
+    midLng = mid.F
+      // lat is stored as A, lng is stored as F
+      // console.log(mid.A)
+
+    marker2 = new google.maps.Marker({
+      position: friend,
+      map: map,
+      title: "Friend",
+      icon: 'person.png'
+    });
+    mid_marker = new google.maps.Marker({
+      position: mid,
+      map: map,
+      title: "MidPoint",
+      icon: 'person.png'
+    });
+
+  }
 
     // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
 
@@ -254,40 +289,7 @@ function getMidpoint() {
     // need the path to the hbs file here
     function renderHandlebars() {
       var html = HandlebarsTemplates['users/index'](); // place data in parens when you're sending data to hbs file
-      // Use an ID to ensure only one, we don't an array
-      $('#map').append(html);
-    }
-
-    initialize();
-    checkForLoc();
-
-    // -------------------CALCULATE ROUTE FROM USER TO PLACE-----------------
-
-    function calcRoute(orig, dest) {
-      var selectedMode = document.getElementById('mode').value;
-      var request = {
-        origin: orig,
-        destination: dest,
-        // Note that Javascript allows us to access the constant
-        // using square brackets and a string value as its
-        // "property."
-        travelMode: google.maps.TravelMode[selectedMode]
-      };
-      directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(response);
-        }
-      });
-    }
-
-    // ----------------------------- HANDLEBARS -----------------------------
-
-    // At its most basic, Handlebars is just a place to put your client-side HTML
-    // Handlebars makes sure it's clean and safe
-    // need the path to the hbs file here
-    function renderHandlebars() {
-      var html = HandlebarsTemplates['users/index'](); // place data in parens when you're sending data to hbs file
-      // Use an ID to ensure only one, we don't an array
+      // Use an ID to ensure only one, we don't want an array
       $('#map').append(html);
     }
 
