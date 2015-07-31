@@ -1,0 +1,17 @@
+<div>
+	<table>
+    <thead>
+    </thead>
+    <tbody>
+      {{#each this}}
+        <tr>
+          <td>{{first_name}}</td>
+
+          <td><button class="meet">Meet!</button></td>
+        </tr>
+        <input type="hidden" name="lat" value="{{lat}}" />
+        <input type="hidden" name="lng" value="{{lng}}" />
+      {{/each}}
+      </tbody>
+    </table>
+</div>

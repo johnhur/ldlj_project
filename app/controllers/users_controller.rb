@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-  before_action :current_user, except: [:new, :create]  
+  before_action :current_user, except: [:new, :create]
 
   def index
   	@users = User.all
+  end
+
+  def friends
+    @friends = User.where("lat IS NOT NULL")
+    render json: @friends
   end
 
   def new
