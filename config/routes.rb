@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # the AJAX get request from the user.js file is looking for
   # the results action here
   get '/results', to: 'places#results'
+  get '/friends', to: 'users#friends'
 end
 
 # Prefix Verb   URI Pattern                Controller#Action
@@ -47,3 +48,4 @@ end
 #            DELETE /places/:id(.:format)      places#destroy
 #     search GET    /search(.:format)          places#search
 #    results GET    /results(.:format)         places#results
+#    friends GET    /friends(.:format)         users#friends

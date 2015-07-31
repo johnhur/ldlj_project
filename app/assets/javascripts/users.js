@@ -146,6 +146,32 @@ $(function() {
       });
     }
 
+    // ---------------------------- FIND LOGGED IN USERS --------------------------
+    $("#friends").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+          // url looks for 'friends' action (see routes.rb)
+          url: '/friends',
+          method: 'get',
+          dataType: 'json'
+        }).done(function(data) {
+          console.log(data)
+          data.forEach(function(friend) {
+            var friendName = friend.first_name;
+            var friendLat = friend.lat;
+            var friendLng = friend.lng;
+            var thisLatLong = new google.maps.LatLng(friendLat, friendLng);
+            var marker = new google.maps.Marker({
+              animation: google.maps.Animation.DROP,
+              position: thisLatLong,
+              map: map,
+              title: friendName,
+              icon: 'person.png'
+            });
+          });
+        });
+      });
+
     // ----------------------------- SEARCH YELP -----------------------------
     // click search & call searchYelp function with geolocation global variables
     // must select the search button only
@@ -252,7 +278,7 @@ function getMidpoint() {
     // need the path to the hbs file here
     function renderHandlebars() {
       var html = HandlebarsTemplates['users/index'](); // place data in parens when you're sending data to hbs file
-      // Use an ID to ensure only one, we don't an array
+      // Use an ID to ensure only one, we don't want an array
       $('#map').append(html);
     }
 
