@@ -21,8 +21,6 @@
       </a>
       <%= link_to "Home", users_path(), :class=>"active item" %>
       <%= link_to "Profile", user_path(session[:user_id]), :class=>"active item"%>
-      <%= link_to "Places", user_path(session[:user_id]), :class=>"active item"%>
-      <%= link_to "Edit", edit_user_path(session[:user_id]), :class=>"active item" %>
       <%= link_to "Signout", logout_path, method: :delete, :class=>"active item" %>
     </div>
    <% end  %>
