@@ -34,30 +34,28 @@ $(function() {
   // If the class we've called "index" is not on a page, then this code won't run (so map doesn't
   // try to load on every page, and geolocation doesn't try to ask user to allow it on every page.)
    if ($(".get-location").length !== 0) {
-    
+
     if (Modernizr.geolocation) {
-      
+
       navigator.geolocation.getCurrentPosition(function(loc){
         userLat = loc.coords.latitude;
         userLong = loc.coords.longitude;
         console.log(userLat + "," + userLong)
 
-        //onclick conditional to check if lat and long are populated.. for users 
+        //onclick conditional to check if lat and long are populated.. for users
 
         $("#user_lat").val(userLat)
         $("#user_lng").val(userLong)
 
-
       }, resErr);
-    } 
-       
+    }
    }
 
 
   if ($(".index").length !== 0) {
 
     renderHandlebars();
- 
+
     // ----------------------------- INITIALIZE MAP -----------------------------
 
     function initialize() {

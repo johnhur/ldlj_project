@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/logout', to: "sessions#logout", as: "logout"
 
   # password reset routes
-  resources :resets, only: [:new, :edit, :create, :update] 
+  resources :resets, only: [:new, :edit, :create, :update]
 
 	# root 'users#index'
 
@@ -22,8 +22,15 @@ Rails.application.routes.draw do
 end
 
 # Prefix Verb   URI Pattern                Controller#Action
-#       root GET    /                          places#index
-#     search GET    /search(.:format)          places#search
+#       root GET    /                          sessions#login
+#      login GET    /login(.:format)           sessions#login
+#            POST   /login(.:format)           sessions#attempt_login
+#     logout DELETE /logout(.:format)          sessions#logout
+#     resets POST   /resets(.:format)          resets#create
+#  new_reset GET    /resets/new(.:format)      resets#new
+# edit_reset GET    /resets/:id/edit(.:format) resets#edit
+#      reset PATCH  /resets/:id(.:format)      resets#update
+#            PUT    /resets/:id(.:format)      resets#update
 #      users GET    /users(.:format)           users#index
 #            POST   /users(.:format)           users#create
 #   new_user GET    /users/new(.:format)       users#new
@@ -40,3 +47,5 @@ end
 #            PATCH  /places/:id(.:format)      places#update
 #            PUT    /places/:id(.:format)      places#update
 #            DELETE /places/:id(.:format)      places#destroy
+#     search GET    /search(.:format)          places#search
+#    results GET    /results(.:format)         places#results
