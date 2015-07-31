@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   root 'sessions#login'
   get '/login', to: "sessions#login", as: 'login'
   post '/login', to: "sessions#attempt_login"
