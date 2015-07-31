@@ -33,7 +33,7 @@ class PlacesController < ApplicationController
   #       token: ENV['YELP_TOKEN_SECRET'],
   #       token_secret: ENV['YELP_TOKEN']
   #     })
-  #   end
+    # end
     private
       def client
          @client ||= Yelp::Client.new({ consumer_key: ENV['config.consumer_key'],
