@@ -1,8 +1,33 @@
+<div class="password-reset-image">
+<div class="password-reset-background-color">
+<div class="password-reset-form">
+
 <h1>Change Your Password</h1>
 <%= form_for :user, url:reset_path(@user.password_reset_token), method: :patch do |f|%>
 <%= f.label :password %>
 <%= f.password_field :password, autofocus: true%>
 
 <%= f.submit "Reset Password"%>
-
+</div>
+</div>
+</div>
 <% end %>
+
+ <script>
+  
+  var imagestwo = ["/assets/sports-731506_1920.jpg", "/assets/skater-821502_1920.jpg", "/assets/coffee-desk-notes-workspace.jpg", "/assets/stairs-man-person-walking.jpg"];
+
+  var randomNum = Math.floor(Math.random() * imagestwo.length); 
+  console.log(randomNum);
+
+  var randomImage = imagestwo[randomNum];
+
+$("#larger").css("background", "url(" + randomImage + ")");
+$("#larger").css("background-size", "cover");
+$("#larger").css("background-repeat", "no-repeat"); 
+$("#larger").css("width", "100%");
+$("#larger").css("height", "");
+
+console.log(randomImage);
+
+</script> 

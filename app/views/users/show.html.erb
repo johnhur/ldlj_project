@@ -48,4 +48,23 @@
 	</div>	
 </body>	
 
+ <script>
+  
+  var imagestwo = ["/assets/sports-731506_1920.jpg", "/assets/skater-821502_1920.jpg", "/assets/coffee-desk-notes-workspace.jpg", "/assets/stairs-man-person-walking.jpg"];
+
+  var randomNum = Math.floor(Math.random() * imagestwo.length); 
+  console.log(randomNum);
+
+  var randomImage = imagestwo[randomNum];
+
+$("#larger").css("background", "url(" + randomImage + ")");
+$("#larger").css("background-size", "cover");
+$("#larger").css("background-repeat", "no-repeat"); 
+$("#larger").css("width", "100%");
+$("#larger").css("height", "");
+
+console.log(randomImage);
+
+</script> 
+
 

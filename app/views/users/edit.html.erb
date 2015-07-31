@@ -62,3 +62,26 @@
 <% end %>	
 </div>
 </div>
+
+ <script>
+  
+  var imagestwo = ["/assets/sports-731506_1920.jpg", "/assets/black-and-white-party-music-club.jpg", "/assets/food-salad-restaurant-person.jpg", "/assets/people-woman-coffee-meeting.jpg"];
+
+  var randomNum = Math.floor(Math.random() * imagestwo.length); 
+  console.log(randomNum);
+
+  var randomImage = imagestwo[randomNum];
+
+$(".edit-picture-page").css("background", "url(" + randomImage + ")");
+$(".edit-picture-page").css("background-size", "cover");
+$(".edit-picture-page").css("background-repeat", "no-repeat"); 
+$(".edit-picture-page").css("width", "100%");
+$(".edit-picture-page").css("background-size", "contain");
+
+console.log(randomImage);
+
+</script> 
+
+
+
+
