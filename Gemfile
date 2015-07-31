@@ -42,6 +42,7 @@ gem 'puma'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'yelp'
   gem 'dotenv-rails'
 	gem 'pry-rails'
 	gem 'better_errors'
