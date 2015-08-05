@@ -12,12 +12,14 @@
 		      <%= submit_tag("Search") %>
 		    <% end %>
 		  </div>
-	  </div>		
+	  </div>
 	</div>
 
 		<div class="ui grid">
 			<div class="three column row">
-				<div class="two wide column"></div>
+			<!-- need both friends and show IDs; please don't remove -->
+				<div class="two wide column"><button id="friends">See Who's Logged In!</button></div>
+				<div class="two wide column" id="show"></div>
 				<div class="twelve wide column"><div id='map'></div></div>
 				<div class="two wide column"></div>
 			</div>
@@ -25,9 +27,9 @@
 
 			<div class="column first">
 				<div id='map'></div>
-			</div>	
-			
-</div>		
+			</div>
+
+</div>
 
 <!-- <div class="ui grid">
 	<div id='map' class="eight column row"></div>
