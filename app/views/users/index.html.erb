@@ -2,14 +2,13 @@
 
 <!-- The class="index" in the h1 tag below is needed (the users.js file is looking for it); please don't remove it -->
 <h3 class="index"></h3>
-
 	<div class="ui two column centered grid">
 		<div class="column first">
 		  <div class ="search-container">
 		    <%= form_tag("/search", method: "get") do %>
 		      <%= label_tag(:q, "Search for a category:", ) %><br>
 		      <%= text_field_tag(:q, nil, class:"user_term", autofocus: true) %>
-		      <%= submit_tag("Search") %>
+		      <%= submit_tag("Search", class:"tiny ui button") %>
 		    <% end %>
 		  </div>
 	  </div>
@@ -18,7 +17,7 @@
 		<div class="ui grid">
 			<div class="three column row">
 			<!-- need both friends and show IDs; please don't remove -->
-				<div class="two wide column"><button id="friends">See Who's Logged In!</button></div>
+				<div class="two wide column"><button id="friends" class="small ui button">Logged-in Friends</button></div>
 				<div class="two wide column" id="show"></div>
 				<div class="twelve wide column"><div id='map'></div></div>
 				<div class="two wide column"></div>

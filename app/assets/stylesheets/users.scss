@@ -233,6 +233,7 @@ ui.inverted.segment.show {
 // This code is for the users edit page
 .edit-form {
 	text-align: center;
+	margin-top: 50px;
 }
 
 .form-group.first-name {
@@ -254,7 +255,6 @@ ui.inverted.segment.show {
 .edit-profile-form {
 	background-color: $main-gray-neutral;
 	@include rounded-corners(10px);
-
 	opacity: 0.9;
 	position: relative;
 	padding: 10px 0 10px 0;
@@ -321,4 +321,8 @@ ul {
 .just-background-color {
 	background-color: $main-gray-neutral;
 }
+.meet {
+	padding-bottom: 2px;
+}
+
 
