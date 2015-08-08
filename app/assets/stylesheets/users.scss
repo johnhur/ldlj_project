@@ -4,7 +4,7 @@
 
 
 
-// This code below is for the signup page
+// This code below is for the new/signup page
 $main-dark-blue: #394263;
 $main-gray-neutral: #e8e9fe;
 $main-turquoise: #20b6ad;
@@ -34,6 +34,7 @@ $main-purple: #53455c;
 
 div.ui.inverted.segment {
 	background-color: $main-dark-blue;
+	margin: 0;
 	text-align: justify;
 }
 
@@ -229,7 +230,7 @@ ui.inverted.segment.show {
 	top: 60px;
 }
 
-// This code is for the edit page
+// This code is for the users edit page
 .edit-form {
 	text-align: center;
 	margin-top: 50px;
@@ -242,7 +243,8 @@ ui.inverted.segment.show {
 
 .edit-picture-page {
 	background: url("city-restaurant-lunch-outside.jpg");
-	height: 855px;
+	height: 2000px;
+	padding-top: 15%;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

@@ -1,3 +1,58 @@
 // Place all the styles related to the resets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// This code is for the edit page
+
+$main-dark-blue: #394263;
+$main-gray-neutral: #e8e9fe;
+$main-turquoise: #20b6ad;
+$main-light-blue: #559adf;
+$main-purple: #53455c;
+
+@mixin rounded-corners($radius: 5px) {
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+}
+
+.password-reset-form, div.main.container {
+	padding-top: 15%;
+	position: relative;	
+}
+
+// div.password-reset-image, body.resets.new {
+// 	background: url("restaurant-691672_1280.jpg");
+// 	height: 8555px;
+// 	padding-top: 15%;
+// 	-webkit-background-size: cover;
+// 	-moz-background-size: cover;
+// 	-o-background-size: cover;
+// 	background-size: cover;
+
+// }
+
+div.password-reset-background-color, form {
+	background-color: $main-gray-neutral;
+	position: relative;
+	padding: 20px 0 20px 0;
+	width: 30%;
+	@include rounded-corners(10px);
+}
+
+div.ui.inverted.segment {
+	position: fixed;
+	width: 100%;
+}
+
+div.main-container {
+	background: url("restaurant-691672_1280.jpg");
+	height: 8555px;
+	padding-top: 15%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+}
+

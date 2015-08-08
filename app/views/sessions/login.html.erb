@@ -45,16 +45,7 @@
       <div class="ui inverted segment footer">
         <div class="ui inverted secondary menu">
        <!--    <a class="active item image"> -->
-          <p class="logo-class">  
-            <%= image_tag("median-logo4.png") %>
-          </p><br>
-          <p class="image-class">  
-            <%= image_tag("median-icon2.png") %>
-          </p>
           <!-- </a> -->
-          <a class="active item">
-            Home
-          </a> 
           <a class="active item">
             About
           </a>
@@ -66,9 +57,9 @@
 </div>
 </div>
 
-<!-- <script>
+ <script>
   
-  var images = ["/assets/restaurant-690569_1280.jpg", "https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg", "/assets/restaurant-690569_1280.jpg"];
+  var images = ["/assets/restaurant-690569_1280.jpg", "/assets/coffee-desk-notes-workspace.jpg", "/assets/stairs-man-person-walking.jpg", "/assets/urban-438393_1920.jpg"];
 
   var randomNum = Math.floor(Math.random() * images.length); 
   console.log(randomNum);
@@ -76,11 +67,16 @@
   var randomImage = images[randomNum];
 
 $("#larger").css("background", "url(" + randomImage + ")");
+$("#larger").css("background-size", "cover");
+$("#larger").css("background-repeat", "no-repeat"); 
+$("#larger").css("width", "100%");
+$("#larger").css("height", "4000px");
+$("#larger").css("background-size", "contain");
 
 console.log(randomImage);
 
 </script> 
--->
+
 
 <!--  hidden field with latitude and longitude. sent when user hits submit..
   - type: hidden, for input element.. 
